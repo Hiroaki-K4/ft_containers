@@ -1,6 +1,6 @@
-NAME := test
+NAME := container_tester
 
-SRCS_DIR := ./tester/
+TEST_DIR := ./tester/
 SRC := tester/main.cpp
 OBJ := $(SRC:.cpp=.o)
 INCLUDE := -I.
@@ -11,7 +11,7 @@ FLAGS := -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
 
-%.o: $(SRCS_DIR)%.cpp
+$(TEST_DIR)%.o: $(TEST_DIR)%.cpp
 	$(CC) $(FLAGS) $(INCLUDE) -c $< -o $@
 
 $(NAME): $(OBJ)
@@ -28,4 +28,11 @@ re: fclean all
 debug: FLAGS += -fsanitize=address
 debug: re
 
-.PHONY: all clean fclean re
+lint:
+	cpplint --filter=-legal/copyright $(SRC)
+
+test: debug
+test: lint
+test: ./container_tester
+
+.PHONY: all clean fclean re test lint
