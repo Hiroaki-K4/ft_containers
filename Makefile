@@ -28,7 +28,11 @@ re: fclean all
 debug: FLAGS += -fsanitize=address
 debug: re
 
-test: re
+lint:
+	cpplint --filter=-legal/copyright $(SRC)
+
+test: debug
+test: lint
 test: ./container_tester
 
-.PHONY: all clean fclean re test
+.PHONY: all clean fclean re test lint
