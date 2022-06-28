@@ -3,7 +3,7 @@ NAME := container_tester
 TEST_DIR := ./tester/
 SRC := tester/main.cpp
 OBJ := $(SRC:.cpp=.o)
-INCLUDE := -I.
+INCLUDE := -I./containers
 
 RM := rm -rf
 CC := c++
