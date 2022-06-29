@@ -4,6 +4,7 @@ TEST_DIR := ./tester/
 SRC := tester/main.cpp
 OBJ := $(SRC:.cpp=.o)
 INCLUDE := -I./containers
+HEADER := containers/vector.hpp
 
 RM := rm -rf
 CC := c++
@@ -29,7 +30,7 @@ debug: FLAGS += -fsanitize=address
 debug: re
 
 lint:
-	cpplint --filter=-legal/copyright $(SRC)
+	cpplint --filter=-legal/copyright,-build/header_guard $(SRC) $(HEADER)
 
 test: debug
 test: lint
