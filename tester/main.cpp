@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 21:12:49 by hkubo             #+#    #+#             */
-/*   Updated: 2022/06/28 22:58:33 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/07/03 17:39:25 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 
 int main(void) {
     std::cout << "TEST vector" << std::endl;
-    // ft::vector<int> v(100);
+    ft::vector<int> v(100);
+    std::cout << v.size() << std::endl;
 
     std::cout << "TEST map" << std::endl;
     std::cout << "TEST stack" << std::endl;

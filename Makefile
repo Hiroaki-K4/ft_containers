@@ -33,7 +33,7 @@ lint:
 	cpplint --filter=-legal/copyright,-build/header_guard $(SRC) $(HEADER)
 
 test: debug
-test: lint
+# test: lint
 test: ./container_tester
 
 .PHONY: all clean fclean re test lint
