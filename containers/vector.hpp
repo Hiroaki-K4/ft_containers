@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/07/03 18:02:54 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/07/04 23:05:38 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,13 @@ class vector {
         typedef std::reverse_iterator<iterator> reverse_iterator;
         typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
 
+        vector() {};
+        vector(const allocator_type &alloc) : alloc(alloc) {};
         vector(size_type size, const allocator_type &alloc = allocator_type()) : alloc(alloc)
         {
             (void)size;
         }
-        vector(size_type size, const_reference value, const allocator_type &alloc = allocator_type()): alloc(alloc)
+        vector(size_type size, const_reference value, const allocator_type &alloc = allocator_type()) : alloc(alloc)
         {
             (void)size;
         }
@@ -96,6 +98,39 @@ class vector {
         pointer last;
         pointer reserved_last;
         allocator_type alloc;
+
+        pointer allocate(size_type n)
+        {
+            alloc.allocate(size);
+            last = first + size;
+            reserved_last = last;
+            return first;
+        }
+        void deallocate()
+        {
+            alloc.deallocate(first, capacity());
+        }
+        void construct(pointer ptr)
+        {
+            alloc.construct(ptr);
+        }
+        void destroy(pointer ptr)
+        {
+            alloc.destroy(ptr);
+        }
+        void destroy_until_end(reverse_iterator new_last)
+        {
+            pointer now = last;
+            while (now != new_last)
+            {
+                alloc.destroy(--now);
+            }
+            last = new_last;
+        }
+        void clear()
+        {
+            destroy_until_end(first);
+        }
 };
 }
 
