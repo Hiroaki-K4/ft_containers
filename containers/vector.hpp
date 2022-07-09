@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/07/04 23:05:38 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/07/09 16:46:14 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,98 +38,137 @@ class vector {
         typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
 
         vector() {};
-        vector(const allocator_type &alloc) : alloc(alloc) {};
-        vector(size_type size, const allocator_type &alloc = allocator_type()) : alloc(alloc)
+        vector(const allocator_type &alloc) : alloc_(alloc) {};
+        vector(size_type size, const allocator_type &alloc = allocator_type()) : alloc_(alloc)
         {
             (void)size;
         }
-        vector(size_type size, const_reference value, const allocator_type &alloc = allocator_type()) : alloc(alloc)
+        vector(size_type size, const_reference value, const allocator_type &alloc = allocator_type()) : alloc_(alloc)
         {
             (void)size;
         }
-        ~vector() {};
+        ~vector()
+        {
+            clear();
+            // deallocate();
+        }
 
         vector(const vector &x) {};
         vector &operator=(const vector &x) {};
 
-        void push_back(const T &x);
+        void push_back(const value_type &val)
+        {
+            if (size() + 1 > capacity())
+            {
+                size_type current_size = size();
+                if (current_size == 0)
+                    reserve(1);
+                else
+                    reserve(current_size * 2);
+            }
+            alloc_.construct(last_, val);
+            last_++;
+        }
         // T &operator[](std::size_t i);
 
-        iterator begin() {return first;}
-        iterator end() {return last;}
-        iterator begin() const {return first;}
-        iterator end() const {return last;}
-        // const_iterator cbegin() const {return const_iterator(first);};
-        // const_iterator cend() const {return last;};
-        // reverse_iterator rbegin() {return reverse_iterator{last};};
-        // reverse_iterator rend() {return reverse_iterator{first}};
+        iterator begin() {return first_;}
+        iterator end() {return last_;}
+        iterator begin() const {return first_;}
+        iterator end() const {return last_;}
+        // const_iterator cbegin() const {return const_iterator(first_);};
+        // const_iterator cend() const {return last_;};
+        // reverse_iterator rbegin() {return reverse_iterator{last_};};
+        // reverse_iterator rend() {return reverse_iterator{first_}};
 
         // size_type size() const {return std::distance(begin(), end());}
         size_type size() const {return begin() - end();}
         bool empty() const {return end() - begin();}
-        size_type capacity() const {return reserved_last - first;}
+        size_type capacity() const {return reserved_last_ - first_;}
 
-        reference operator[](size_type i) {return first[i];}
-        const_reference operator[](size_type i) const {return first[i];}
+        reference operator[](size_type i) {return first_[i];}
+        const_reference operator[](size_type i) const {return first_[i];}
 
         reference at(size_type i)
         {
             if (i >= size())
                 throw std::out_of_range("Index is out of range.");
-            return first[i];
+            return first_[i];
         }
         const_reference at(size_type i) const
         {
             if (i >= size())
                 throw std::out_of_range("Index is out of range.");
-            return first[i];
+            return first_[i];
         }
 
-        reference front() {return first;}
-        const_reference front() const {return first;}
-        reference back() {return last - 1;}
-        const_reference back() const {return last - 1;}
+        reference front() {return first_;}
+        const_reference front() const {return first_;}
+        reference back() {return last_ - 1;}
+        const_reference back() const {return last_ - 1;}
 
-        pointer data() {return first;}
-        // const_pointer data() const {return first;}
+        pointer data() {return first_;}
+        // const_pointer data() const {return first_;}
+
+        void reserve(size_type sz)
+        {
+            if (sz <= capacity())
+                return ;
+            pointer ptr = allocate(sz);
+            size_type old_size = size();
+
+            first_ = ptr;
+            last_ = first_ + old_size;
+        }
+        void resize(size_type n, value_type val = value_type())
+        {
+            if (n < size())
+            {
+                erase(begin() + n, end());
+            }
+            else
+            {
+                insert(end(), n - size(), val);
+            }
+        }
 
     private:
-        pointer first;
-        pointer last;
-        pointer reserved_last;
-        allocator_type alloc;
+        pointer first_;
+        pointer last_;
+        pointer reserved_last_;
+        allocator_type alloc_;
 
         pointer allocate(size_type n)
         {
-            alloc.allocate(size);
-            last = first + size;
-            reserved_last = last;
-            return first;
+            alloc_.allocate(size);
+            last_ = first_ + size;
+            reserved_last_ = last_;
+            return first_;
         }
         void deallocate()
         {
-            alloc.deallocate(first, capacity());
+            alloc_.deallocate(first_, capacity());
         }
         void construct(pointer ptr)
         {
-            alloc.construct(ptr);
+            alloc_.construct(ptr);
         }
         void destroy(pointer ptr)
         {
-            alloc.destroy(ptr);
+            alloc_.destroy(ptr);
         }
-        void destroy_until_end(reverse_iterator new_last)
+        void destroy_until_end(pointer new_last)
         {
-            pointer now = last;
+            pointer now = last_;
             while (now != new_last)
             {
-                alloc.destroy(--now);
+                std::cout << "Loop" << std::endl;
+                alloc_.destroy(--now);
             }
-            last = new_last;
+            last_ = new_last;
         }
         void clear()
         {
-            destroy_until_end(first);
+            // destroy_until_end(first_);
         }
 };
 }
