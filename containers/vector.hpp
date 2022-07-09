@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/07/09 16:46:14 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/07/09 18:22:50 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ class vector {
         }
         vector(size_type size, const_reference value, const allocator_type &alloc = allocator_type()) : alloc_(alloc)
         {
+            (void)value;
             (void)size;
         }
         ~vector()
@@ -53,7 +54,10 @@ class vector {
             // deallocate();
         }
 
-        vector(const vector &x) {};
+        vector(const vector &x)
+        {
+            (void)x;
+        }
         vector &operator=(const vector &x) {};
 
         void push_back(const value_type &val)
@@ -75,12 +79,9 @@ class vector {
         iterator end() {return last_;}
         iterator begin() const {return first_;}
         iterator end() const {return last_;}
-        // const_iterator cbegin() const {return const_iterator(first_);};
-        // const_iterator cend() const {return last_;};
         // reverse_iterator rbegin() {return reverse_iterator{last_};};
         // reverse_iterator rend() {return reverse_iterator{first_}};
 
-        // size_type size() const {return std::distance(begin(), end());}
         size_type size() const {return begin() - end();}
         bool empty() const {return end() - begin();}
         size_type capacity() const {return reserved_last_ - first_;}
@@ -105,9 +106,6 @@ class vector {
         const_reference front() const {return first_;}
         reference back() {return last_ - 1;}
         const_reference back() const {return last_ - 1;}
-
-        pointer data() {return first_;}
-        // const_pointer data() const {return first_;}
 
         void reserve(size_type sz)
         {
@@ -151,10 +149,6 @@ class vector {
         void construct(pointer ptr)
         {
             alloc_.construct(ptr);
-        }
-        void destroy(pointer ptr)
-        {
-            alloc_.destroy(ptr);
         }
         void destroy_until_end(pointer new_last)
         {
