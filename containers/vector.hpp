@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/07/09 18:22:50 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/07/10 23:06:29 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,20 @@ class vector {
         typedef std::reverse_iterator<iterator> reverse_iterator;
         typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
 
-        vector() {};
-        vector(const allocator_type &alloc) : alloc_(alloc) {};
-        vector(size_type size, const allocator_type &alloc = allocator_type()) : alloc_(alloc)
+        vector(const allocator_type &alloc = allocator_type()) : alloc_(alloc) {};
+        vector(size_type size, const value_type &val = value_type(), const allocator_type &alloc = allocator_type()) : alloc_(alloc)
         {
             (void)size;
+            (void)val;
         }
-        vector(size_type size, const_reference value, const allocator_type &alloc = allocator_type()) : alloc_(alloc)
+        vector(iterator first, iterator last, const allocator_type &alloc = allocator_type()) : alloc_(alloc)
         {
-            (void)value;
-            (void)size;
+            (void)first;
+            (void)last;
+        }
+        vector(const vector &x)
+        {
+            (void)x;
         }
         ~vector()
         {
@@ -54,10 +58,6 @@ class vector {
             // deallocate();
         }
 
-        vector(const vector &x)
-        {
-            (void)x;
-        }
         vector &operator=(const vector &x) {};
 
         void push_back(const value_type &val)

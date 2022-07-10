@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 21:12:49 by hkubo             #+#    #+#             */
-/*   Updated: 2022/07/09 18:23:06 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/07/10 22:38:16 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int main(void) {
     ft::vector<int> v_1;
     ft::vector<int> v_2(100);
     ft::vector<int> v_3(100, 1);
-    // ft::vector<int> v_4(v_3.begin(), v_3.end());
+    ft::vector<int> v_4(v_3.begin(), v_3.end());
     ft::vector<int> v_5(v_3);
 
     std::cout << "TEST map" << std::endl;
