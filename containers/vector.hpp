@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/07/10 23:06:29 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/07/11 23:01:37 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,16 @@ class vector {
         typedef std::reverse_iterator<iterator> reverse_iterator;
         typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
 
-        vector(const allocator_type &alloc = allocator_type()) : alloc_(alloc) {};
-        vector(size_type size, const value_type &val = value_type(), const allocator_type &alloc = allocator_type()) : alloc_(alloc)
+        explicit vector(const allocator_type &alloc = allocator_type())
+            : first_(NULL), last_(NULL), reserved_last_(NULL), alloc_(alloc) {};
+        explicit vector(size_type size, const value_type &val = value_type(), const allocator_type &alloc = allocator_type())
+            : first_(NULL), last_(NULL), reserved_last_(NULL), alloc_(alloc)
         {
             (void)size;
             (void)val;
         }
-        vector(iterator first, iterator last, const allocator_type &alloc = allocator_type()) : alloc_(alloc)
+        template <class InputIterator>
+        vector(InputIterator first, InputIterator last, const allocator_type &alloc = allocator_type()) : alloc_(alloc)
         {
             (void)first;
             (void)last;
