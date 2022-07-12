@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/07/11 23:01:37 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/07/12 23:08:41 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,16 @@ class vector {
 
         explicit vector(const allocator_type &alloc = allocator_type())
             : first_(NULL), last_(NULL), reserved_last_(NULL), alloc_(alloc) {};
-        explicit vector(size_type size, const value_type &val = value_type(), const allocator_type &alloc = allocator_type())
+        explicit vector(size_type n, const value_type &val = value_type(), const allocator_type &alloc = allocator_type())
             : first_(NULL), last_(NULL), reserved_last_(NULL), alloc_(alloc)
         {
-            (void)size;
-            (void)val;
+            if (n > 0)
+            {
+                allocate(n);
+                std::cout << "ok1" << std::endl;
+                std::uninitialized_fill_n(first_, n, val);
+                std::cout << "ok2" << std::endl;
+            }
         }
         template <class InputIterator>
         vector(InputIterator first, InputIterator last, const allocator_type &alloc = allocator_type()) : alloc_(alloc)
@@ -140,8 +145,8 @@ class vector {
 
         pointer allocate(size_type n)
         {
-            alloc_.allocate(size);
-            last_ = first_ + size;
+            alloc_.allocate(n);
+            last_ = first_ + n;
             reserved_last_ = last_;
             return first_;
         }
