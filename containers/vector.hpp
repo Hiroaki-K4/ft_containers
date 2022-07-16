@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/07/12 23:08:41 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/07/16 18:48:26 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,18 @@ class vector {
         typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
 
         explicit vector(const allocator_type &alloc = allocator_type())
-            : first_(NULL), last_(NULL), reserved_last_(NULL), alloc_(alloc) {};
-        explicit vector(size_type n, const value_type &val = value_type(), const allocator_type &alloc = allocator_type())
-            : first_(NULL), last_(NULL), reserved_last_(NULL), alloc_(alloc)
+            : alloc_(alloc), first_(NULL), last_(NULL), reserved_last_(NULL)
         {
+            std::cout << "constructor0" << std::endl;
+        };
+        explicit vector(size_type n, const value_type &val = value_type(), const allocator_type &alloc = allocator_type())
+            : alloc_(alloc), first_(NULL), last_(NULL), reserved_last_(NULL)
+        {
+            std::cout << "constructor1" << std::endl;
             if (n > 0)
             {
                 allocate(n);
-                std::cout << "ok1" << std::endl;
                 std::uninitialized_fill_n(first_, n, val);
-                std::cout << "ok2" << std::endl;
             }
         }
         template <class InputIterator>
@@ -55,10 +57,12 @@ class vector {
         {
             (void)first;
             (void)last;
+            std::cout << "constructor2" << std::endl;
         }
         vector(const vector &x)
         {
             (void)x;
+            std::cout << "constructor3" << std::endl;
         }
         ~vector()
         {
@@ -138,17 +142,16 @@ class vector {
         }
 
     private:
+        allocator_type alloc_;
         pointer first_;
         pointer last_;
         pointer reserved_last_;
-        allocator_type alloc_;
 
-        pointer allocate(size_type n)
+        void allocate(size_type n)
         {
-            alloc_.allocate(n);
+            first_ = alloc_.allocate(n);
             last_ = first_ + n;
             reserved_last_ = last_;
-            return first_;
         }
         void deallocate()
         {
