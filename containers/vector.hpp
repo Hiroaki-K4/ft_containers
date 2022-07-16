@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/07/16 18:48:26 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/07/16 22:39:00 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <memory>
 #include <iterator>
 #include <deque>
+#include <type_traits>
 
 namespace ft
 {
@@ -40,12 +41,10 @@ class vector {
         explicit vector(const allocator_type &alloc = allocator_type())
             : alloc_(alloc), first_(NULL), last_(NULL), reserved_last_(NULL)
         {
-            std::cout << "constructor0" << std::endl;
         };
         explicit vector(size_type n, const value_type &val = value_type(), const allocator_type &alloc = allocator_type())
             : alloc_(alloc), first_(NULL), last_(NULL), reserved_last_(NULL)
         {
-            std::cout << "constructor1" << std::endl;
             if (n > 0)
             {
                 allocate(n);
@@ -53,16 +52,20 @@ class vector {
             }
         }
         template <class InputIterator>
-        vector(InputIterator first, InputIterator last, const allocator_type &alloc = allocator_type()) : alloc_(alloc)
+        vector(InputIterator first, typename std::enable_if<!std::is_integral<InputIterator>::value, InputIterator>::type last, const allocator_type &alloc = allocator_type()) : alloc_(alloc)
         {
-            (void)first;
-            (void)last;
-            std::cout << "constructor2" << std::endl;
+            allocate(std::distance(first, last));
+            std::uninitialized_copy(first, last, first_);
         }
         vector(const vector &x)
+            : alloc_(x.alloc_), first_(NULL), last_(NULL), reserved_last_(NULL)
         {
-            (void)x;
-            std::cout << "constructor3" << std::endl;
+            size_type size = std::distance(x.begin(), x.end());
+            if (size > 0)
+            {
+                allocate(size);
+                std::uninitialized_copy(x.begin(), x.end(), first_);
+            }
         }
         ~vector()
         {

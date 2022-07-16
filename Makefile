@@ -8,7 +8,8 @@ HEADER := containers/vector.hpp
 
 RM := rm -rf
 CC := c++
-FLAGS := -Wall -Wextra -Werror -std=c++98
+# FLAGS := -Wall -Wextra -Werror -std=c++98
+FLAGS := -Wall -Wextra -Werror -std=c++11
 
 all: $(NAME)
 
