@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/07/17 16:20:54 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/07/17 16:23:59 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ class vector {
         ~vector()
         {
             clear();
-            // deallocate();
+            deallocate();
         }
 
         vector &operator=(const vector &x) {};
@@ -176,7 +176,6 @@ class vector {
         void clear()
         {
             destroy_until_end(first_);
-            deallocate();
         }
 };
 }
