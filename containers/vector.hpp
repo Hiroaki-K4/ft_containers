@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/07/16 22:39:00 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/07/17 16:20:54 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,14 +169,14 @@ class vector {
             pointer now = last_;
             while (now != new_last)
             {
-                std::cout << "Loop" << std::endl;
-                alloc_.destroy(--now);
+                alloc_.destroy(now--);
             }
             last_ = new_last;
         }
         void clear()
         {
-            // destroy_until_end(first_);
+            destroy_until_end(first_);
+            deallocate();
         }
 };
 }
