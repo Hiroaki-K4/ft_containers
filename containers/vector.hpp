@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/07/17 16:23:59 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/07/17 18:01:54 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ class vector {
         // reverse_iterator rbegin() {return reverse_iterator{last_};};
         // reverse_iterator rend() {return reverse_iterator{first_}};
 
-        size_type size() const {return begin() - end();}
+        size_type size() const {return end() - begin();}
         bool empty() const {return end() - begin();}
         size_type capacity() const {return reserved_last_ - first_;}
 
@@ -126,11 +126,15 @@ class vector {
         {
             if (sz <= capacity())
                 return ;
-            pointer ptr = allocate(sz);
+            pointer new_first = alloc_.allocate(sz);
+            size_type old_capacity = capacity();
             size_type old_size = size();
-
-            first_ = ptr;
+            std::uninitialized_copy(first_, last_, new_first);
+            clear();
+            alloc_.deallocate(first_, old_capacity);
+            first_ = new_first;
             last_ = first_ + old_size;
+            reserved_last_ = first_ + sz;
         }
         void resize(size_type n, value_type val = value_type())
         {

@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 21:12:49 by hkubo             #+#    #+#             */
-/*   Updated: 2022/07/17 16:21:16 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/07/17 18:01:29 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@
 int main(void) {
     std::cout << "TEST vector" << std::endl;
     ft::vector<int> v_1;
+    v_1.push_back(1);
+    std::cout << "vec1: " << v_1[0] << std::endl;
     ft::vector<int> v_2(100);
+    std::cout << "vec2: " << v_2[0] << std::endl;
     ft::vector<int> v_3(100, 1);
     ft::vector<int> v_4(v_2.begin(), v_2.end());
     ft::vector<int> v_5(v_3);
