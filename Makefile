@@ -1,4 +1,4 @@
-NAME := container_tester
+NAME := grade
 
 TEST_DIR := ./tester/
 SRC := tester/main.cpp
@@ -35,6 +35,6 @@ lint:
 
 test: debug
 # test: lint
-test: ./container_tester
+test: ./grade
 
 .PHONY: all clean fclean re test lint

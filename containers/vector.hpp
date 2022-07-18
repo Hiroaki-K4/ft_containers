@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/07/17 18:01:54 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/07/18 21:32:11 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,8 @@ class vector {
         // reverse_iterator rend() {return reverse_iterator{first_}};
 
         size_type size() const {return end() - begin();}
-        bool empty() const {return end() - begin();}
+        // size_type max_size() const {};
+        bool empty() const {return begin() == end();}
         size_type capacity() const {return reserved_last_ - first_;}
 
         reference operator[](size_type i) {return first_[i];}
@@ -122,11 +123,11 @@ class vector {
         reference back() {return last_ - 1;}
         const_reference back() const {return last_ - 1;}
 
-        void reserve(size_type sz)
+        void reserve(size_type n)
         {
-            if (sz <= capacity())
+            if (n <= capacity())
                 return ;
-            pointer new_first = alloc_.allocate(sz);
+            pointer new_first = alloc_.allocate(n);
             size_type old_capacity = capacity();
             size_type old_size = size();
             std::uninitialized_copy(first_, last_, new_first);
@@ -134,7 +135,7 @@ class vector {
             alloc_.deallocate(first_, old_capacity);
             first_ = new_first;
             last_ = first_ + old_size;
-            reserved_last_ = first_ + sz;
+            reserved_last_ = first_ + n;
         }
         void resize(size_type n, value_type val = value_type())
         {
