@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 21:12:49 by hkubo             #+#    #+#             */
-/*   Updated: 2022/07/18 21:18:11 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/07/18 22:36:39 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@ int main(void) {
 
     std::cout << "[v1 test]" << std::endl;
     ft::vector<int> v_1;
+    std::vector<int> v_tmp;
+    try {
+        std::cout << "v1 reserve(max_size() + 1)"  << std::endl;
+        v_1.reserve(v_1.max_size() + 1);
+    }
+    catch (const std::length_error& le) {
+        std::cerr << "Length error: " << le.what() << '\n';
+    }
     std::cout << "v1 size(): " << v_1.size() << std::endl;
     std::cout << "v1 empty(): " << v_1.empty() << std::endl;
     v_1.push_back(1);

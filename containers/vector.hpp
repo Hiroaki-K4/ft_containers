@@ -6,13 +6,14 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/07/18 21:32:11 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/07/18 22:34:48 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_HPP
 # define VECTOR_HPP
 
+#include <limits>
 #include <memory>
 #include <iterator>
 #include <deque>
@@ -98,7 +99,10 @@ class vector {
         // reverse_iterator rend() {return reverse_iterator{first_}};
 
         size_type size() const {return end() - begin();}
-        // size_type max_size() const {};
+        size_type max_size() const
+        {
+            return std::min(static_cast<size_type>(std::numeric_limits<difference_type>::max() / sizeof(value_type)), alloc_.max_size());
+        }
         bool empty() const {return begin() == end();}
         size_type capacity() const {return reserved_last_ - first_;}
 
@@ -125,6 +129,8 @@ class vector {
 
         void reserve(size_type n)
         {
+            if (n > max_size())
+                throw std::length_error("ft::vector::reserve");
             if (n <= capacity())
                 return ;
             pointer new_first = alloc_.allocate(n);
