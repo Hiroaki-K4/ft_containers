@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/07/18 22:34:48 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/07/18 22:51:05 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ class vector {
             {
                 erase(begin() + n, end());
             }
-            else
+            else if (n > size())
             {
                 insert(end(), n - size(), val);
             }
