@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/07/18 22:51:05 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/07/23 22:56:26 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,10 @@ class vector {
                 insert(end(), n - size(), val);
             }
         }
+        void clear()
+        {
+            destroy_until_end(first_);
+        }
 
     private:
         allocator_type alloc_;
@@ -183,10 +187,6 @@ class vector {
                 alloc_.destroy(now--);
             }
             last_ = new_last;
-        }
-        void clear()
-        {
-            destroy_until_end(first_);
         }
 };
 }

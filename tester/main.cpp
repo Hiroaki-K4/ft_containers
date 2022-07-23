@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 21:12:49 by hkubo             #+#    #+#             */
-/*   Updated: 2022/07/18 22:54:57 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/07/23 22:58:46 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,15 @@ int main(void) {
     std::cout << "v1 size(): " << v_1.size() << std::endl;
     std::cout << "v1 empty(): " << v_1.empty() << std::endl;
     std::cout << "vec1: " << v_1[0] << std::endl;
-    std::cout << "v1 resize(3, 100)" << std::endl;
+    std::cout << "v1 resize() test" << std::endl;
+    v_1.clear();
+    v_1.resize(5);
+    v_1.resize(8,100);
+    v_1.resize(12);
+    for (size_t i = 0; i < v_1.size(); i++)
+        std::cout << ' ' << v_1[i];
+    std::cout << std::endl;
+
     // v_1.resize(3, 100);
     std::cout << "v1[0] v1[1] v1[2]: " << v_1[0] << " " << v_1[1] << " " << v_1[2] << std::endl;
     std::cout << std::endl;
