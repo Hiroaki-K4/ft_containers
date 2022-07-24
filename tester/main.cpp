@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 21:12:49 by hkubo             #+#    #+#             */
-/*   Updated: 2022/07/24 17:59:12 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/07/24 22:50:22 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,20 @@ int main(void) {
     std::cout << "v1 empty(): " << v_1.empty() << std::endl;
     std::cout << "vec1: " << v_1[0] << std::endl;
     v_1.clear();
+
     std::cout << "v1 insert test" << std::endl;
     v_1.insert(v_1.begin(), 200);
     v_1.insert (v_1.end(), 3, 300);
-    TODO: Add more insert functoin test
+    int array[] = {501, 502, 503};
+    v_1.insert(v_1.end(), array, array + 3);
+
     std::cout << "v1 resize() test" << std::endl;
     // v_1.resize(5);
     // v_1.resize(8,100);
     // v_1.resize(12);
-    for (size_t i = 0; i < v_1.size(); i++)
+    std::cout << "size: " << v_1.size() << std::endl;
+    // for (size_t i = 0; i < v_1.size(); i++)
+    for (size_t i = 0; i < 6; i++)
         std::cout << ' ' << v_1[i];
     std::cout << std::endl;
 

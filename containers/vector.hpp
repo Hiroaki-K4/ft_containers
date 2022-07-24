@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/07/24 17:58:06 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/07/24 22:58:15 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,9 +179,6 @@ class vector {
         }
         void insert(iterator position, size_type n, const value_type &val)
         {
-            (void)position;
-            (void)n;
-            (void)val;
             size_type range = std::distance(first_, position);
             if (size() + n > capacity())
             {
@@ -199,26 +196,72 @@ class vector {
                 for (size_type i = 0; i < (size() - range); i++)
                 {
                     if (range + i + n >= size())
-                        alloc_.construct(first_ + range + i + n, val);
+                        alloc_.construct(first_ + range + i + n, first_[range + i]);
                     else
                         first_[range + i + n] = first_[range + i];
                 }
                 for (size_type i = 0; i < n; i++)
                 {
                     if (range + i >= size())
-                        alloc_.construct(last_, val);
+                        alloc_.construct(&first_[range + i], val);
                     else
                         first_[range + i] = val;
-                    last_++;
                 }
+                last_ += n;
             }
         }
         template <class InputIterator>
         void insert(iterator position, InputIterator first, typename std::enable_if<!std::is_integral<InputIterator>::value, InputIterator>::type last)
         {
-            (void)position;
-            (void)first;
-            (void)last;
+            size_type insert_size = std::distance(first, last);
+            size_type range = std::distance(first_, position);
+            std::cout << "ok1" << std::endl;
+            if (size() + insert_size > capacity())
+            {
+                std::cout << "ok2.1" << std::endl;
+                std::cout << "insert1" << std::endl;
+                pointer new_first = alloc_.allocate(size() + insert_size);
+                std::uninitialized_copy(first_, first_ + range, new_first);
+                std::uninitialized_copy(first, last, new_first + range);
+                std::uninitialized_copy(first_ + range, last_, new_first + range + insert_size);
+                deallocate();
+                first_ = new_first;
+                last_ = new_first + range + insert_size;
+                reserved_last_ = first_ + size() + insert_size;
+            }
+            else
+            {
+                std::cout << "ok2.2" << std::endl;
+                for (size_type i = 0; i < (size() - range); i++)
+                {
+                    if (range + i + insert_size >= size())
+                        alloc_.construct(first_ + range + i + insert_size, first_[range + i]);
+                    else
+                        first_[range + i + insert_size] = first_[range + i];
+                }
+                std::cout << "ok3" << std::endl;
+                for (size_type i = 0; i < insert_size; i++)
+                {
+                    std::cout << "ok3.1" << std::endl;
+                    if (range + i >= size())
+                    {
+                        std::cout << "ok3.2" << std::endl;
+                        // alloc_.construct(last_, *(first + i));
+                        // std::cout << "range: " << first_[range + i] << " " << first[i] << std::endl;
+                        // TODO: Fix heap-buffer-overflow
+                        std::cout << "range: " << " " << first_[range + i] << std::endl;
+                        // alloc_.construct(&first_[range + i], first[i]);
+                        std::cout << "ok3.2.1" << std::endl;
+                    }
+                    else
+                    {
+                        std::cout << "ok3.3" << std::endl;
+                        first_[range + i] = first[i];
+                    }
+                }
+                last_ += insert_size;
+                std::cout << "ok4" << std::endl;
+            }
         }
 
     private:
