@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/07/24 14:28:05 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/07/24 17:58:06 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,10 +182,43 @@ class vector {
             (void)position;
             (void)n;
             (void)val;
+            size_type range = std::distance(first_, position);
+            if (size() + n > capacity())
+            {
+                pointer new_first = alloc_.allocate(size() + n);
+                std::uninitialized_copy(first_, first_ + range, new_first);
+                std::uninitialized_fill_n(new_first + range, n, val);
+                std::uninitialized_copy(first_ + range, last_, new_first + range + n);
+                deallocate();
+                first_ = new_first;
+                last_ = new_first + range + n;
+                reserved_last_ = first_ + size() + n;
+            }
+            else
+            {
+                for (size_type i = 0; i < (size() - range); i++)
+                {
+                    if (range + i + n >= size())
+                        alloc_.construct(first_ + range + i + n, val);
+                    else
+                        first_[range + i + n] = first_[range + i];
+                }
+                for (size_type i = 0; i < n; i++)
+                {
+                    if (range + i >= size())
+                        alloc_.construct(last_, val);
+                    else
+                        first_[range + i] = val;
+                    last_++;
+                }
+            }
         }
         template <class InputIterator>
-        void insert(iterator position, InputIterator first, InputIterator last)
+        void insert(iterator position, InputIterator first, typename std::enable_if<!std::is_integral<InputIterator>::value, InputIterator>::type last)
         {
+            (void)position;
+            (void)first;
+            (void)last;
         }
 
     private:
