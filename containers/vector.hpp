@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/07/24 14:09:03 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/07/24 14:28:05 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,21 @@ class vector {
             }
             destroy_until_end(first);
             return first;
+        }
+        iterator insert(iterator position, const value_type &val)
+        {
+            insert(position, 1, val);
+            return position;
+        }
+        void insert(iterator position, size_type n, const value_type &val)
+        {
+            (void)position;
+            (void)n;
+            (void)val;
+        }
+        template <class InputIterator>
+        void insert(iterator position, InputIterator first, InputIterator last)
+        {
         }
 
     private:
