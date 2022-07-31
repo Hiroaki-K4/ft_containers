@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/07/24 22:58:15 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/07/31 09:56:54 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,17 +182,21 @@ class vector {
             size_type range = std::distance(first_, position);
             if (size() + n > capacity())
             {
-                pointer new_first = alloc_.allocate(size() + n);
+                std::cout << "insert allocate!" << std::endl;
+                size_type old_capacity = capacity();
+                pointer new_first = alloc_.allocate(size());
                 std::uninitialized_copy(first_, first_ + range, new_first);
                 std::uninitialized_fill_n(new_first + range, n, val);
                 std::uninitialized_copy(first_ + range, last_, new_first + range + n);
-                deallocate();
+                clear();
+                alloc_.deallocate(first_, );
                 first_ = new_first;
                 last_ = new_first + range + n;
                 reserved_last_ = first_ + size() + n;
             }
             else
             {
+                std::cout << "insert non-allocate!" << std::endl;
                 for (size_type i = 0; i < (size() - range); i++)
                 {
                     if (range + i + n >= size())
@@ -215,7 +219,7 @@ class vector {
         {
             size_type insert_size = std::distance(first, last);
             size_type range = std::distance(first_, position);
-            std::cout << "ok1" << std::endl;
+            std::cout << "ok1 " << "capacity: " << capacity() << " size: " << size() << " insert: " << insert_size << " sum: " << size() + insert_size << std::endl;
             if (size() + insert_size > capacity())
             {
                 std::cout << "ok2.1" << std::endl;
@@ -231,13 +235,19 @@ class vector {
             }
             else
             {
-                std::cout << "ok2.2" << std::endl;
+                std::cout << "ok2.2: " << size() - range << std::endl;
                 for (size_type i = 0; i < (size() - range); i++)
                 {
                     if (range + i + insert_size >= size())
+                    {
+                        std::cout << "const1: " << range + i + insert_size << " " << first_[range + i] << std::endl;
                         alloc_.construct(first_ + range + i + insert_size, first_[range + i]);
+                    }
                     else
+                    {
+                        std::cout << "const2: " << range + i + insert_size << " " << first_[range + i] << std::endl;
                         first_[range + i + insert_size] = first_[range + i];
+                    }
                 }
                 std::cout << "ok3" << std::endl;
                 for (size_type i = 0; i < insert_size; i++)
@@ -249,8 +259,11 @@ class vector {
                         // alloc_.construct(last_, *(first + i));
                         // std::cout << "range: " << first_[range + i] << " " << first[i] << std::endl;
                         // TODO: Fix heap-buffer-overflow
-                        std::cout << "range: " << " " << first_[range + i] << std::endl;
-                        // alloc_.construct(&first_[range + i], first[i]);
+                        std::cout << "range: " << range + i << " " << first_ + range + i << " " << first_[range + i - 1] << " " << first[i] << std::endl;
+                        std::cout << "arg1: " << first_ + range + i << std::endl;
+                        std::cout << "arg2: " << first[i] << std::endl;
+                        alloc_.construct(first_ + range + i, first[i]);
+                        // alloc_.construct(first_, first[i]);
                         std::cout << "ok3.2.1" << std::endl;
                     }
                     else
