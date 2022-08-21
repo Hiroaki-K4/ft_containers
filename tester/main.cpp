@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 21:12:49 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/21 21:46:34 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/08/21 22:05:58 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,23 +110,25 @@ int main(void)
         std::cout << resize_test[i] << " ";
     std::cout << std::endl;
 
-    std::cout << "[v2 test]" << std::endl;
-    ft::vector<int> v_2(100);
-    std::cout << "vec2: " << v_2[0] << std::endl;
+    std::cout << std::endl;
+    std::cout << "at test" << std::endl;
+    ft::vector<int> at_test(10);
+    for (unsigned i = 0; i < at_test.size(); i++)
+        at_test.at(i)=i;
+    std::cout << "at_test contains:";
+    for (unsigned i = 0; i < at_test.size(); i++)
+        std::cout << ' ' << at_test.at(i);
+    std::cout << std::endl;
+    try {
+        std::cout << "Access 10th factor"  << std::endl;
+        std::cout << at_test.at(10) << std::endl;
+    }
+    catch (const std::out_of_range& le) {
+        std::cerr << "[Error] " << le.what() << std::endl;
+    }
     std::cout << std::endl;
 
-    std::cout << "[v3 test]" << std::endl;
-    ft::vector<int> v_3(100, 1);
     std::cout << std::endl;
-
-    std::cout << "[v4 test]" << std::endl;
-    ft::vector<int> v_4(v_2.begin(), v_2.end());
-    std::cout << std::endl;
-
-    std::cout << "[v5 test]" << std::endl;
-    ft::vector<int> v_5(v_3);
-    std::cout << std::endl;
-
     std::cout << "TEST map" << std::endl;
     std::cout << "TEST stack" << std::endl;
     std::cout << "TEST iterators_traits" << std::endl;
