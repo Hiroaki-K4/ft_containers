@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/21 14:25:36 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/08/21 16:43:56 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,42 +183,31 @@ class vector {
             size_type now_size = size();
             if (now_size + n > capacity())
             {
-                std::cout << "insert allocate!" << std::endl;
                 size_type old_capacity = capacity();
                 size_type old_size = now_size;
-                pointer new_first = alloc_.allocate(old_size + n + 1);
+                pointer new_first = alloc_.allocate(old_size + n);
                 std::uninitialized_copy(first_, first_ + range, new_first);
                 std::uninitialized_fill_n(new_first + range, n, val);
                 std::uninitialized_copy(first_ + range, last_, new_first + range + n);
                 clear();
                 alloc_.deallocate(first_, old_capacity);
                 first_ = new_first;
-                last_ = new_first + old_size + n;
-                reserved_last_ = first_ + old_size + n + 1;
+                last_ = first_ + old_size + n;
+                reserved_last_ = first_ + old_size + n;
             }
             else
             {
-                std::cout << "insert non-allocate!" << std::endl;
                 size_type move_range = now_size - range;
-                std::cout << "move_range: " << move_range << std::endl;
                 size_type new_size = now_size + n;
                 for (size_type i = 0; i < move_range; i++)
                 {
                     if (new_size - i > now_size)
-                    {
-                        std::cout << "ok1.1: " << first_[now_size - i - 1] << " " << new_size - i - 1 << " " << now_size - i - 1 << std::endl;
                         alloc_.construct(&first_[new_size - i - 1], first_[now_size - i - 1]);
-                    }
                     else
-                    {
-                        std::cout << "ok1.2: " << first_[now_size - i - 1] << " " << new_size - i - 1 << " " << now_size - i - 1 << std::endl;
                         first_[new_size - i - 1] = first_[now_size - i - 1];
-                        std::cout << "finish" << std::endl;
-                    }
                 }
                 for (size_type i = 0; i < n; i++)
                 {
-                    std::cout << "ok2" << std::endl;
                     if (range + i >= now_size)
                         alloc_.construct(&first_[range + i], val);
                     else
@@ -231,62 +220,41 @@ class vector {
         void insert(iterator position, InputIterator first, typename std::enable_if<!std::is_integral<InputIterator>::value, InputIterator>::type last)
         {
             size_type insert_size = std::distance(first, last);
-            size_type range = std::distance(first_, position);
-            std::cout << "ok1 " << "capacity: " << capacity() << " size: " << size() << " insert: " << insert_size << " sum: " << size() + insert_size << std::endl;
-            if (size() + insert_size > capacity())
+            size_type range = position - begin();
+            size_type now_size = size();
+            if (now_size + insert_size > capacity())
             {
-                std::cout << "ok2.1" << std::endl;
-                std::cout << "insert1" << std::endl;
-                pointer new_first = alloc_.allocate(size() + insert_size);
+                size_type old_capacity = capacity();
+                size_type old_size = now_size;
+                pointer new_first = alloc_.allocate(old_size + insert_size);
                 std::uninitialized_copy(first_, first_ + range, new_first);
                 std::uninitialized_copy(first, last, new_first + range);
                 std::uninitialized_copy(first_ + range, last_, new_first + range + insert_size);
-                deallocate();
+                clear();
+                alloc_.deallocate(first_, old_capacity);
                 first_ = new_first;
-                last_ = new_first + range + insert_size;
-                reserved_last_ = first_ + size() + insert_size;
+                last_ = first_ + old_size + insert_size;
+                reserved_last_ = first_ + old_size + insert_size;
             }
             else
             {
-                std::cout << "ok2.2: " << size() - range << std::endl;
-                for (size_type i = 0; i < (size() - range); i++)
+                size_type move_range = now_size - range;
+                size_type new_size = now_size + insert_size;
+                for (size_type i = 0; i < move_range; i++)
                 {
-                    if (range + i + insert_size >= size())
-                    {
-                        std::cout << "const1: " << range + i + insert_size << " " << first_[range + i] << std::endl;
-                        alloc_.construct(first_ + range + i + insert_size, first_[range + i]);
-                    }
+                    if (new_size - i > now_size)
+                        alloc_.construct(&first_[new_size - i - 1], first_[now_size - i - 1]);
                     else
-                    {
-                        std::cout << "const2: " << range + i + insert_size << " " << first_[range + i] << std::endl;
-                        first_[range + i + insert_size] = first_[range + i];
-                    }
+                        first_[new_size - i - 1] = first_[now_size - i - 1];
                 }
-                std::cout << "ok3" << std::endl;
                 for (size_type i = 0; i < insert_size; i++)
                 {
-                    std::cout << "ok3.1" << std::endl;
-                    if (range + i >= size())
-                    {
-                        std::cout << "ok3.2" << std::endl;
-                        // alloc_.construct(last_, *(first + i));
-                        // std::cout << "range: " << first_[range + i] << " " << first[i] << std::endl;
-                        // TODO: Fix heap-buffer-overflow
-                        std::cout << "range: " << range + i << " " << first_ + range + i << " " << first_[range + i - 1] << " " << first[i] << std::endl;
-                        std::cout << "arg1: " << first_ + range + i << std::endl;
-                        std::cout << "arg2: " << first[i] << std::endl;
-                        alloc_.construct(first_ + range + i, first[i]);
-                        // alloc_.construct(first_, first[i]);
-                        std::cout << "ok3.2.1" << std::endl;
-                    }
+                    if (range + i >= now_size)
+                        alloc_.construct(&first_[range + i], first[i]);
                     else
-                    {
-                        std::cout << "ok3.3" << std::endl;
                         first_[range + i] = first[i];
-                    }
                 }
                 last_ += insert_size;
-                std::cout << "ok4" << std::endl;
             }
         }
 
