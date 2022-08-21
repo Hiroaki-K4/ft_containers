@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/07/31 10:10:43 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/08/21 14:25:36 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,36 +179,47 @@ class vector {
         }
         void insert(iterator position, size_type n, const value_type &val)
         {
-            size_type range = std::distance(first_, position);
-            if (size() + n > capacity())
+            size_type range = position - begin();
+            size_type now_size = size();
+            if (now_size + n > capacity())
             {
                 std::cout << "insert allocate!" << std::endl;
                 size_type old_capacity = capacity();
-                size_type old_size = size();
-                pointer new_first = alloc_.allocate(size() + n + 1);
+                size_type old_size = now_size;
+                pointer new_first = alloc_.allocate(old_size + n + 1);
                 std::uninitialized_copy(first_, first_ + range, new_first);
                 std::uninitialized_fill_n(new_first + range, n, val);
                 std::uninitialized_copy(first_ + range, last_, new_first + range + n);
                 clear();
                 alloc_.deallocate(first_, old_capacity);
                 first_ = new_first;
-                // last_ = new_first + range + n;
                 last_ = new_first + old_size + n;
-                reserved_last_ = first_ + size() + n + 1;
+                reserved_last_ = first_ + old_size + n + 1;
             }
             else
             {
                 std::cout << "insert non-allocate!" << std::endl;
-                for (size_type i = 0; i < (size() - range); i++)
+                size_type move_range = now_size - range;
+                std::cout << "move_range: " << move_range << std::endl;
+                size_type new_size = now_size + n;
+                for (size_type i = 0; i < move_range; i++)
                 {
-                    if (range + i + n >= size())
-                        alloc_.construct(first_ + range + i + n, first_[range + i]);
+                    if (new_size - i > now_size)
+                    {
+                        std::cout << "ok1.1: " << first_[now_size - i - 1] << " " << new_size - i - 1 << " " << now_size - i - 1 << std::endl;
+                        alloc_.construct(&first_[new_size - i - 1], first_[now_size - i - 1]);
+                    }
                     else
-                        first_[range + i + n] = first_[range + i];
+                    {
+                        std::cout << "ok1.2: " << first_[now_size - i - 1] << " " << new_size - i - 1 << " " << now_size - i - 1 << std::endl;
+                        first_[new_size - i - 1] = first_[now_size - i - 1];
+                        std::cout << "finish" << std::endl;
+                    }
                 }
                 for (size_type i = 0; i < n; i++)
                 {
-                    if (range + i >= size())
+                    std::cout << "ok2" << std::endl;
+                    if (range + i >= now_size)
                         alloc_.construct(&first_[range + i], val);
                     else
                         first_[range + i] = val;

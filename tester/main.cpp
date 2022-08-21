@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 21:12:49 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/21 10:17:21 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/08/21 14:24:57 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,24 +38,24 @@ int main(void)
     std::cout << std::endl;
     std::cout << "v1 insert test" << " size: " << v_1.size() << " capacity: " << v_1.capacity() << std::endl;
     v_1.insert(v_1.begin(), 200);
-    v_1.insert(v_1.end(), 200);
-    v_1.insert(v_1.end(), 4, 300);
+    v_1.insert(v_1.end(), 300);
+    // v_1.insert(v_1.end(), 4, 400);
+    for (size_t i = 0; i < v_1.size(); i++)
+        std::cout << ' ' << v_1[i];
+    std::cout << std::endl;
     std::cout << "v1 insert test1" << " size: " << v_1.size() << " capacity: " << v_1.capacity() << std::endl;
-    v_1.insert(v_1.begin(), 200);
-    v_1.insert(v_1.end(), 200);
-    v_1.insert(v_1.end(), 4, 300);
-    std::cout << "v1 insert test1.1" << " size: " << v_1.size() << " capacity: " << v_1.capacity() << std::endl;
-    v_1.insert(v_1.begin(), 200);
-    v_1.insert(v_1.end(), 200);
-    v_1.insert(v_1.end(), 4, 300);
-
-    std::cout << "v1 insert test2" << " size: " << v_1.size() << " capacity: " << v_1.capacity() << std::endl;
-    // int array[] = {501, 502, 503, 504};
-    std::cout << "start!!!" << std::endl;
-    // v_1.insert(v_1.end(), array, array + 4);
-    std::cout << "finish!!!" << std::endl;
+    v_1.insert(v_1.begin(), 400);
+    v_1.insert(v_1.begin(), 500);
+    v_1.insert(v_1.end(), 600);
+    for (size_t i = 0; i < v_1.size(); i++)
+        std::cout << ' ' << v_1[i];
+    std::cout << std::endl;
     // v_1.insert(v_1.end(), 4, 300);
-    
+    std::cout << "v1 insert test1.1" << " size: " << v_1.size() << " capacity: " << v_1.capacity() << std::endl;
+    v_1.insert(v_1.begin(), 700);
+    // v_1.insert(v_1.end(), 600);
+    // v_1.insert(v_1.end(), 4, 700);
+
     for (size_t i = 0; i < v_1.size(); i++)
         std::cout << ' ' << v_1[i];
     std::cout << std::endl;
