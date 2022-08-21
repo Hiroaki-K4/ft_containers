@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 21:12:49 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/21 22:58:38 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/08/21 23:05:41 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,14 @@ int main(void)
     for (unsigned i = 0; i < back_test.size() ; i++)
         std::cout << ' ' << back_test[i];
     std::cout << std::endl;
+
+    std::cout << std::endl;
+    std::cout << "front test" << std::endl;
+    ft::vector<int> front_test;
+    front_test.push_back(78);
+    front_test.push_back(16);
+    front_test.front() -= front_test.back();
+    std::cout << "front_test.front() is now " << front_test.front() << std::endl;
 
     std::cout << std::endl;
     std::cout << "TEST map" << std::endl;
