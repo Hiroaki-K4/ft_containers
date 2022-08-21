@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/21 16:43:56 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/08/21 16:50:26 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,16 @@ class vector {
             insert(position, 1, val);
             return position;
         }
+        void move_ori_factor(size_type now_size, size_type new_size, size_type move_range)
+        {
+            for (size_type i = 0; i < move_range; i++)
+            {
+                if (new_size - i > now_size)
+                    alloc_.construct(&first_[new_size - i - 1], first_[now_size - i - 1]);
+                else
+                    first_[new_size - i - 1] = first_[now_size - i - 1];
+            }
+        }
         void insert(iterator position, size_type n, const value_type &val)
         {
             size_type range = position - begin();
@@ -199,13 +209,7 @@ class vector {
             {
                 size_type move_range = now_size - range;
                 size_type new_size = now_size + n;
-                for (size_type i = 0; i < move_range; i++)
-                {
-                    if (new_size - i > now_size)
-                        alloc_.construct(&first_[new_size - i - 1], first_[now_size - i - 1]);
-                    else
-                        first_[new_size - i - 1] = first_[now_size - i - 1];
-                }
+                move_ori_factor(now_size, new_size, move_range);
                 for (size_type i = 0; i < n; i++)
                 {
                     if (range + i >= now_size)
@@ -240,13 +244,7 @@ class vector {
             {
                 size_type move_range = now_size - range;
                 size_type new_size = now_size + insert_size;
-                for (size_type i = 0; i < move_range; i++)
-                {
-                    if (new_size - i > now_size)
-                        alloc_.construct(&first_[new_size - i - 1], first_[now_size - i - 1]);
-                    else
-                        first_[new_size - i - 1] = first_[now_size - i - 1];
-                }
+                move_ori_factor(now_size, new_size, move_range);
                 for (size_type i = 0; i < insert_size; i++)
                 {
                     if (range + i >= now_size)
