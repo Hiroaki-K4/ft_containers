@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/07/31 09:56:54 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/07/31 10:10:43 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,15 +184,17 @@ class vector {
             {
                 std::cout << "insert allocate!" << std::endl;
                 size_type old_capacity = capacity();
-                pointer new_first = alloc_.allocate(size());
+                size_type old_size = size();
+                pointer new_first = alloc_.allocate(size() + n + 1);
                 std::uninitialized_copy(first_, first_ + range, new_first);
                 std::uninitialized_fill_n(new_first + range, n, val);
                 std::uninitialized_copy(first_ + range, last_, new_first + range + n);
                 clear();
-                alloc_.deallocate(first_, );
+                alloc_.deallocate(first_, old_capacity);
                 first_ = new_first;
-                last_ = new_first + range + n;
-                reserved_last_ = first_ + size() + n;
+                // last_ = new_first + range + n;
+                last_ = new_first + old_size + n;
+                reserved_last_ = first_ + size() + n + 1;
             }
             else
             {
