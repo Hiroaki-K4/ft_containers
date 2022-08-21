@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/21 17:43:00 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/08/21 23:01:11 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,8 +124,8 @@ class vector {
 
         reference front() {return first_;}
         const_reference front() const {return first_;}
-        reference back() {return last_ - 1;}
-        const_reference back() const {return last_ - 1;}
+        reference back() {return *(end() - 1);}
+        const_reference back() const {return *(end() - 1);}
 
         void reserve(size_type n)
         {
