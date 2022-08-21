@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 21:12:49 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/21 16:28:59 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/08/21 17:42:04 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,18 @@ int main(void)
         std::cout << v_1[i] << " ";
     std::cout << std::endl;
 
+    std::cout << std::endl;
+    std::cout << "erase test" << std::endl;
+    ft::vector<int> erase_test;
+    for (int i = 1; i <= 10; i++)
+        erase_test.push_back(i);
+    erase_test.erase(erase_test.begin() + 5);
+    erase_test.erase(erase_test.begin(), erase_test.begin() + 3);
+    for (unsigned i = 0; i < erase_test.size(); ++i)
+        std::cout << erase_test[i] << " ";
+    std::cout << std::endl;
+
+    std::cout << std::endl;
     std::cout << "resize() test" << std::endl;
     ft::vector<int> resize_test;
     for (int i=1;i<10;i++)
