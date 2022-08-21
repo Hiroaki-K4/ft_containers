@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 21:12:49 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/21 10:17:21 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/08/21 16:28:59 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,27 +38,26 @@ int main(void)
     std::cout << std::endl;
     std::cout << "v1 insert test" << " size: " << v_1.size() << " capacity: " << v_1.capacity() << std::endl;
     v_1.insert(v_1.begin(), 200);
-    v_1.insert(v_1.end(), 200);
-    v_1.insert(v_1.end(), 4, 300);
-    std::cout << "v1 insert test1" << " size: " << v_1.size() << " capacity: " << v_1.capacity() << std::endl;
-    v_1.insert(v_1.begin(), 200);
-    v_1.insert(v_1.end(), 200);
-    v_1.insert(v_1.end(), 4, 300);
-    std::cout << "v1 insert test1.1" << " size: " << v_1.size() << " capacity: " << v_1.capacity() << std::endl;
-    v_1.insert(v_1.begin(), 200);
-    v_1.insert(v_1.end(), 200);
-    v_1.insert(v_1.end(), 4, 300);
-
-    std::cout << "v1 insert test2" << " size: " << v_1.size() << " capacity: " << v_1.capacity() << std::endl;
-    // int array[] = {501, 502, 503, 504};
-    std::cout << "start!!!" << std::endl;
-    // v_1.insert(v_1.end(), array, array + 4);
-    std::cout << "finish!!!" << std::endl;
-    // v_1.insert(v_1.end(), 4, 300);
-    
+    v_1.insert(v_1.end(), 300);
+    v_1.insert(v_1.begin(), 400);
+    v_1.insert(v_1.begin(), 500);
+    v_1.insert(v_1.end(), 600);
+    v_1.insert(v_1.begin(), 700);
+    v_1.insert(v_1.end(), 4, 700);
     for (size_t i = 0; i < v_1.size(); i++)
-        std::cout << ' ' << v_1[i];
+        std::cout << v_1[i] << " ";
     std::cout << std::endl;
+
+    std::cout << std::endl;
+    std::cout << "v1 insert iterator test" << std::endl;
+    int arr[] = {501, 502, 503};
+    std::cout << "v1_size: " << v_1.size() << std::endl;
+    v_1.insert(v_1.begin(), arr, arr + 3);
+    std::cout << "v1_size: " << v_1.size() << std::endl;
+    for (size_t i = 0; i < v_1.size(); i++)
+        std::cout << v_1[i] << " ";
+    std::cout << std::endl;
+
     std::cout << "resize() test" << std::endl;
     ft::vector<int> resize_test;
     for (int i=1;i<10;i++)
@@ -67,7 +66,7 @@ int main(void)
     resize_test.resize(8,100);
     resize_test.resize(12);
     for (size_t i = 0; i < resize_test.size(); i++)
-        std::cout << ' ' << resize_test[i];
+        std::cout << resize_test[i] << " ";
     std::cout << std::endl;
 
     std::cout << "[v2 test]" << std::endl;
