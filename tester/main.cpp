@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 21:12:49 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/21 17:42:04 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/08/21 21:46:34 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,35 @@ int main(void)
 {
     std::cout << "~~~ TEST vector ~~~" << std::endl;
 
+    std::cout << "constructor test" << std::endl;
+    ft::vector<int> first;
+    for (size_t i = 0; i < first.size(); i++)
+        std::cout << first[i] << " ";
+    std::cout << std::endl;
+
+    ft::vector<int> second(4, 100);
+    for (size_t i = 0; i < second.size(); i++)
+        std::cout << second[i] << " ";
+    std::cout << std::endl;
+
+    ft::vector<int> third(second.begin(), second.end());
+    for (size_t i = 0; i < third.size(); i++)
+        std::cout << third[i] << " ";
+    std::cout << std::endl;
+
+    ft::vector<int> fourth(third);
+    for (size_t i = 0; i < fourth.size(); i++)
+        std::cout << fourth[i] << " ";
+    std::cout << std::endl;
+
+    int myints[] = {16,2,77,29};
+    ft::vector<int> fifth (myints, myints + sizeof(myints) / sizeof(int));
+    std::cout << "The contents of fifth are:";
+    for (ft::vector<int>::iterator it = fifth.begin(); it != fifth.end(); ++it)
+        std::cout << ' ' << *it;
+    std::cout << std::endl;
+
+    std::cout << std::endl;
     std::cout << "[v1 test]" << std::endl;
     ft::vector<int> v_1;
     try {
