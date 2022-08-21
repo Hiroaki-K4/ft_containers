@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/21 16:50:26 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/08/21 17:43:00 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,10 +166,8 @@ class vector {
         {
             difference_type range = std::distance(first, last);
             for (iterator it = first; it + range != end(); it++)
-            {
                 *it = *(it + range);
-            }
-            destroy_until_end(first);
+            destroy_until_end(last_ - range);
             return first;
         }
         iterator insert(iterator position, const value_type &val)
