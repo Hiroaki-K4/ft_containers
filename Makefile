@@ -1,13 +1,15 @@
-NAME := container_tester
+NAME := grade
 
 TEST_DIR := ./tester/
 SRC := tester/main.cpp
 OBJ := $(SRC:.cpp=.o)
 INCLUDE := -I./containers
+HEADER := containers/vector.hpp
 
 RM := rm -rf
 CC := c++
-FLAGS := -Wall -Wextra -Werror -std=c++98
+# FLAGS := -Wall -Wextra -Werror -std=c++98
+FLAGS := -Wall -Wextra -Werror -std=c++11
 
 all: $(NAME)
 
@@ -29,10 +31,10 @@ debug: FLAGS += -fsanitize=address
 debug: re
 
 lint:
-	cpplint --filter=-legal/copyright $(SRC)
+	cpplint --filter=-legal/copyright,-build/header_guard $(SRC) $(HEADER)
 
 test: debug
-test: lint
-test: ./container_tester
+# test: lint
+test: ./grade
 
 .PHONY: all clean fclean re test lint
