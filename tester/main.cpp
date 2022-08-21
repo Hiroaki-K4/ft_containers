@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 21:12:49 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/21 22:05:58 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/08/21 23:05:41 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,27 @@ int main(void)
     catch (const std::out_of_range& le) {
         std::cerr << "[Error] " << le.what() << std::endl;
     }
+
     std::cout << std::endl;
+    std::cout << "back test" << std::endl;
+    ft::vector<int> back_test;
+    back_test.push_back(10);
+    while (back_test.back() != 0)
+    {
+        back_test.push_back(back_test.back() - 1);
+    }
+    std::cout << "back_test contains:";
+    for (unsigned i = 0; i < back_test.size() ; i++)
+        std::cout << ' ' << back_test[i];
+    std::cout << std::endl;
+
+    std::cout << std::endl;
+    std::cout << "front test" << std::endl;
+    ft::vector<int> front_test;
+    front_test.push_back(78);
+    front_test.push_back(16);
+    front_test.front() -= front_test.back();
+    std::cout << "front_test.front() is now " << front_test.front() << std::endl;
 
     std::cout << std::endl;
     std::cout << "TEST map" << std::endl;
