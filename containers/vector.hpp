@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/21 23:06:11 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/08/25 09:00:54 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,10 @@ class vector {
             deallocate();
         }
 
-        vector &operator=(const vector &x) {};
+        vector &operator=(const vector &x)
+        {
+            
+        }
 
         void push_back(const value_type &val)
         {
@@ -252,6 +255,27 @@ class vector {
                 }
                 last_ += insert_size;
             }
+        }
+        template <class InputIterator>
+        void assign(InputIterator first, InputIterator last)
+        {
+            size_type dist = std::distance(first, last);
+            if (dist > capacity())
+            {
+                clear();
+                reserve(dist);
+                std::uninitialized_copy(first, last, first_);
+            }
+            else
+            {
+                destroy_until_end(first + dist);
+                std::copy(first, last, first_);
+            }
+            last_ = first_ + dist;
+        }
+        void assign(size_type n, const value_type& val)
+        {
+            
         }
 
     private:

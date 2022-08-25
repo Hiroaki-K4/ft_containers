@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 21:12:49 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/21 23:05:41 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/08/25 09:02:37 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,15 @@ int main(void)
     for (ft::vector<int>::iterator it = fifth.begin(); it != fifth.end(); ++it)
         std::cout << ' ' << *it;
     std::cout << std::endl;
+
+    // std::cout << std::endl;
+    // std::cout << "operator= test" << std::endl;
+    // ft::vector<int> foo(3, 0);
+    // ft::vector<int> bar(5, 0);
+    // bar = foo;
+    // foo = ft::vector<int>();
+    // std::cout << "Size of foo: " << int(foo.size()) << std::endl;
+    // std::cout << "Size of bar: " << int(bar.size()) << std::endl;
 
     std::cout << std::endl;
     std::cout << "[v1 test]" << std::endl;
@@ -147,6 +156,25 @@ int main(void)
     front_test.push_back(16);
     front_test.front() -= front_test.back();
     std::cout << "front_test.front() is now " << front_test.front() << std::endl;
+
+    std::cout << std::endl;
+    std::cout << "assign test" << std::endl;
+    ft::vector<int> assign1;
+    ft::vector<int> assign2;
+    ft::vector<int> assign3;
+
+    assign1.assign(7, 100);
+    ft::vector<int>::iterator it;
+    it = assign1.begin() + 1;
+
+    assign2.assign(it, assign1.end()-1);
+
+    // int assign_ints[] = {1776, 7, 4};
+    // assign3.assign(assign_ints, assign_ints + 3);
+
+    std::cout << "Size of assign1: " << int(assign1.size()) << std::endl;
+    std::cout << "Size of assign2: " << int (assign2.size()) << std::endl;
+    // std::cout << "Size of assign3: " << int (assign3.size()) << std::endl;
 
     std::cout << std::endl;
     std::cout << "TEST map" << std::endl;
