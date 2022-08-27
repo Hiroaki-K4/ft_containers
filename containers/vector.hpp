@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/27 15:44:48 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/08/27 23:53:39 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,10 @@ class vector {
         iterator end() {return last_;}
         iterator begin() const {return first_;}
         iterator end() const {return last_;}
-        // reverse_iterator rbegin() {return reverse_iterator{last_};};
-        // reverse_iterator rend() {return reverse_iterator{first_}};
+        reverse_iterator rbegin() {return reverse_iterator(end());};
+        const_reverse_iterator  rbegin() const {return reverse_iterator(end());};
+        reverse_iterator rend() {return reverse_iterator(begin());};
+        const_reverse_iterator rend() const {return reverse_iterator(begin());};
 
         size_type size() const {return end() - begin();}
         size_type max_size() const
