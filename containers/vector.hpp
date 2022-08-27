@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/25 09:00:54 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/08/27 15:20:43 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,7 +257,7 @@ class vector {
             }
         }
         template <class InputIterator>
-        void assign(InputIterator first, InputIterator last)
+        void assign(InputIterator first, typename std::enable_if<!std::is_integral<InputIterator>::value, InputIterator>::type last)
         {
             size_type dist = std::distance(first, last);
             if (dist > capacity())
@@ -268,14 +268,26 @@ class vector {
             }
             else
             {
-                destroy_until_end(first + dist);
+                destroy_until_end(first_ + dist);
                 std::copy(first, last, first_);
             }
             last_ = first_ + dist;
         }
         void assign(size_type n, const value_type& val)
         {
-            
+            (void)val;
+            if (n > capacity())
+            {
+                clear();
+                reserve(n);
+                std::uninitialized_fill_n(first_, n, val);
+            }
+            else
+            {
+                destroy_until_end(first_ + n);
+                std::fill_n(first_, n, val);
+            }
+            last_ = first_ + n;
         }
 
     private:

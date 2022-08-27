@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 21:12:49 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/25 09:02:37 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/08/27 15:21:13 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,12 +169,12 @@ int main(void)
 
     assign2.assign(it, assign1.end()-1);
 
-    // int assign_ints[] = {1776, 7, 4};
-    // assign3.assign(assign_ints, assign_ints + 3);
+    int assign_ints[] = {1776, 7, 4};
+    assign3.assign(assign_ints, assign_ints + 3);
 
     std::cout << "Size of assign1: " << int(assign1.size()) << std::endl;
     std::cout << "Size of assign2: " << int (assign2.size()) << std::endl;
-    // std::cout << "Size of assign3: " << int (assign3.size()) << std::endl;
+    std::cout << "Size of assign3: " << int (assign3.size()) << std::endl;
 
     std::cout << std::endl;
     std::cout << "TEST map" << std::endl;
