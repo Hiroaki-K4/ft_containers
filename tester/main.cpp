@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 21:12:49 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/27 15:46:31 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/08/27 23:56:49 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,34 @@ int main(void)
     std::cout << "Size of assign1: " << int(assign1.size()) << std::endl;
     std::cout << "Size of assign2: " << int (assign2.size()) << std::endl;
     std::cout << "Size of assign3: " << int (assign3.size()) << std::endl;
+
+    {
+        std::cout << std::endl;
+        std::cout << "rbegin test" << std::endl;
+        ft::vector<int> rbegin_test(5);
+        int i = 0;
+        ft::vector<int>::reverse_iterator rit = rbegin_test.rbegin();
+        for (; rit!= rbegin_test.rend(); ++rit)
+            *rit = ++i;
+        std::cout << "rbegin_test contains:";
+        for (ft::vector<int>::iterator it = rbegin_test.begin(); it != rbegin_test.end(); ++it)
+            std::cout << ' ' << *it;
+        std::cout << std::endl;
+    }
+
+    {
+        std::cout << std::endl;
+        std::cout << "rend test" << std::endl;
+        ft::vector<int> rend_test(5);
+        ft::vector<int>::reverse_iterator rit = rend_test.rbegin();
+        int i = 0;
+        for (rit = rend_test.rbegin(); rit!= rend_test.rend(); ++rit)
+            *rit = ++i;
+        std::cout << "rend_test contains:";
+        for (ft::vector<int>::iterator it = rend_test.begin(); it != rend_test.end(); ++it)
+            std::cout << ' ' << *it;
+        std::cout << std::endl;
+    }
 
     std::cout << std::endl;
     std::cout << "TEST map" << std::endl;
