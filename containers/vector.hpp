@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/27 15:30:00 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/08/27 15:44:48 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,8 @@ class vector {
         bool empty() const {return begin() == end();}
         size_type capacity() const {return reserved_last_ - first_;}
 
-        reference operator[](size_type i) {return first_[i];}
-        const_reference operator[](size_type i) const {return first_[i];}
+        reference operator[](size_type n) {return first_[n];}
+        const_reference operator[](size_type n) const {return first_[n];}
 
         reference at(size_type i)
         {

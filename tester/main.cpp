@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 21:12:49 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/27 15:24:28 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/08/27 15:46:31 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,25 @@ int main(void)
     foo = ft::vector<int>();
     std::cout << "Size of foo: " << int(foo.size()) << std::endl;
     std::cout << "Size of bar: " << int(bar.size()) << std::endl;
+
+    std::cout << std::endl;
+    std::cout << "operator[] test" << std::endl;
+    ft::vector<int> op_test(10);
+    ft::vector<int>::size_type sz = op_test.size();
+    for (unsigned i = 0; i < sz; i++)
+        op_test[i]=i;
+
+    for (unsigned i = 0; i < sz / 2; i++)
+    {
+        int temp;
+        temp = op_test[sz - 1 - i];
+        op_test[sz - 1 - i] = op_test[i];
+        op_test[i] = temp;
+    }
+
+    for (unsigned i = 0; i < sz; i++)
+        std::cout << ' ' << op_test[i];
+    std::cout << std::endl;
 
     std::cout << std::endl;
     std::cout << "[v1 test]" << std::endl;
