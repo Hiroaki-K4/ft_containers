@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/21 23:06:11 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/08/27 15:44:48 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,11 @@ class vector {
             deallocate();
         }
 
-        vector &operator=(const vector &x) {};
+        vector &operator=(const vector &x)
+        {
+            assign(x.begin(), x.end());
+            return *this;
+        }
 
         void push_back(const value_type &val)
         {
@@ -106,8 +110,8 @@ class vector {
         bool empty() const {return begin() == end();}
         size_type capacity() const {return reserved_last_ - first_;}
 
-        reference operator[](size_type i) {return first_[i];}
-        const_reference operator[](size_type i) const {return first_[i];}
+        reference operator[](size_type n) {return first_[n];}
+        const_reference operator[](size_type n) const {return first_[n];}
 
         reference at(size_type i)
         {
@@ -252,6 +256,38 @@ class vector {
                 }
                 last_ += insert_size;
             }
+        }
+        template <class InputIterator>
+        void assign(InputIterator first, typename std::enable_if<!std::is_integral<InputIterator>::value, InputIterator>::type last)
+        {
+            size_type dist = std::distance(first, last);
+            if (dist > capacity())
+            {
+                clear();
+                reserve(dist);
+                std::uninitialized_copy(first, last, first_);
+            }
+            else
+            {
+                destroy_until_end(first_ + dist);
+                std::copy(first, last, first_);
+            }
+            last_ = first_ + dist;
+        }
+        void assign(size_type n, const value_type& val)
+        {
+            if (n > capacity())
+            {
+                clear();
+                reserve(n);
+                std::uninitialized_fill_n(first_, n, val);
+            }
+            else
+            {
+                destroy_until_end(first_ + n);
+                std::fill_n(first_, n, val);
+            }
+            last_ = first_ + n;
         }
 
     private:
