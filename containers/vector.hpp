@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/27 15:20:43 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/08/27 15:30:00 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ class vector {
 
         vector &operator=(const vector &x)
         {
-            
+            assign(x.begin(), x.end());
+            return *this;
         }
 
         void push_back(const value_type &val)
@@ -275,7 +276,6 @@ class vector {
         }
         void assign(size_type n, const value_type& val)
         {
-            (void)val;
             if (n > capacity())
             {
                 clear();

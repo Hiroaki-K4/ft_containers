@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 21:12:49 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/27 15:21:13 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/08/27 15:24:28 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ int main(void)
         std::cout << ' ' << *it;
     std::cout << std::endl;
 
-    // std::cout << std::endl;
-    // std::cout << "operator= test" << std::endl;
-    // ft::vector<int> foo(3, 0);
-    // ft::vector<int> bar(5, 0);
-    // bar = foo;
-    // foo = ft::vector<int>();
-    // std::cout << "Size of foo: " << int(foo.size()) << std::endl;
-    // std::cout << "Size of bar: " << int(bar.size()) << std::endl;
+    std::cout << std::endl;
+    std::cout << "operator= test" << std::endl;
+    ft::vector<int> foo(3, 0);
+    ft::vector<int> bar(5, 0);
+    bar = foo;
+    foo = ft::vector<int>();
+    std::cout << "Size of foo: " << int(foo.size()) << std::endl;
+    std::cout << "Size of bar: " << int(bar.size()) << std::endl;
 
     std::cout << std::endl;
     std::cout << "[v1 test]" << std::endl;
