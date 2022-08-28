@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 21:12:49 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/28 11:39:04 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/08/28 11:52:31 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,6 +239,26 @@ int main(void)
         std::cout << "The elements of pop_test add up to " << sum << std::endl;
         std::cout << "Size: " << pop_test.size() << std::endl;
         std::cout << std::endl;
+    }
+
+    {
+        std::cout << "get_allocator test" << std::endl;
+        ft::vector<int> get_alloc_test;
+        int *p;
+        unsigned int i;
+
+        p = get_alloc_test.get_allocator().allocate(5);
+        for (i = 0; i < 5; i++)
+            get_alloc_test.get_allocator().construct(&p[i], i);
+
+        std::cout << "The allocated array contains:";
+        for (i = 0; i < 5; i++)
+            std::cout << ' ' << p[i];
+        std::cout << std::endl;
+
+        for (i = 0; i < 5; i++)
+            get_alloc_test.get_allocator().destroy(&p[i]);
+        get_alloc_test.get_allocator().deallocate(p,5);
     }
 
     std::cout << std::endl;
