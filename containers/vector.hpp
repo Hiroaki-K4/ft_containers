@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/28 11:52:17 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/08/28 15:55:56 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -279,7 +279,7 @@ class vector {
             }
             last_ = first_ + dist;
         }
-        void assign(size_type n, const value_type& val)
+        void assign(size_type n, const value_type &val)
         {
             if (n > capacity())
             {
@@ -297,6 +297,12 @@ class vector {
         allocator_type get_allocator() const
         {
             return alloc_;
+        }
+        void swap(vector &x)
+        {
+            vector tmp = x;
+            x = *this;
+            *this = tmp;
         }
 
     private:

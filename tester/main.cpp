@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 21:12:49 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/28 11:52:31 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/08/28 15:56:31 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,6 +259,24 @@ int main(void)
         for (i = 0; i < 5; i++)
             get_alloc_test.get_allocator().destroy(&p[i]);
         get_alloc_test.get_allocator().deallocate(p,5);
+    }
+
+    {
+        std::cout << std::endl;
+        std::cout << "swap test" << std::endl;
+        ft::vector<int> foo (3,100);
+        ft::vector<int> bar (5,200);
+
+        foo.swap(bar);
+        std::cout << "foo contains:";
+        for (unsigned i = 0; i < foo.size(); i++)
+            std::cout << ' ' << foo[i];
+        std::cout << std::endl;
+
+        std::cout << "bar contains:";
+        for (unsigned i = 0; i < bar.size(); i++)
+            std::cout << ' ' << bar[i];
+        std::cout << std::endl;
     }
 
     std::cout << std::endl;
