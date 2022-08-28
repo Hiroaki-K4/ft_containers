@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/28 16:58:18 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/08/28 17:31:00 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ namespace ft
             typedef std::size_t size_type;
             typedef std::ptrdiff_t difference_type;
 
-            // iterator alias
             typedef pointer iterator;
             typedef const_pointer const_iterator;
             typedef std::reverse_iterator<iterator> reverse_iterator;
@@ -336,9 +335,68 @@ namespace ft
             }
     };
     template <class T, class Alloc>
-    void swap(vector<T,Alloc> &x, vector<T,Alloc> &y)
+    void swap(vector<T, Alloc> &x, vector<T, Alloc> &y)
     {
         x.swap(y);
+    }
+    template <class T, class Alloc>
+    bool operator==(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
+    {
+        if (lhs.size() != rhs.size())
+            return false;
+        for (size_t i = 0; i < lhs.size(); i++)
+        {
+            if (lhs[i] != rhs[i])
+                return false;
+        }
+        return true;
+    }
+    template <class T, class Alloc>
+    bool operator!=(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
+    {
+        if (lhs == rhs)
+            return false;
+        else
+            return true;
+    }
+    template <class T, class Alloc>
+    bool operator<(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
+    {
+        for (size_t i = 0; i < lhs.size(); i++)
+        {
+            if (lhs[i] < rhs[i])
+                return true;
+            else
+                return false;
+        }
+        if (lhs.size() < rhs.size())
+            return true;
+        else
+            return false;
+    }
+    template <class T, class Alloc>
+    bool operator<=(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
+    {
+        if (lhs < rhs || lhs == rhs)
+            return true;
+        else
+            return false;
+    }
+    template <class T, class Alloc>
+    bool operator>(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
+    {
+        if (lhs < rhs || lhs == rhs)
+            return false;
+        else
+            return true;
+    }
+    template <class T, class Alloc>
+    bool operator>=(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
+    {
+        if (lhs > rhs || lhs == rhs)
+            return true;
+        else
+            return false;
     }
 }
 
