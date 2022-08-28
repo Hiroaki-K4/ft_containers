@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/27 23:53:39 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/08/28 11:42:45 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,10 @@ class vector {
             alloc_.construct(last_, val);
             last_++;
         }
-        // T &operator[](std::size_t i);
+        void pop_back()
+        {
+            destroy_until_end(last_ - 1);
+        }
 
         iterator begin() {return first_;}
         iterator end() {return last_;}
