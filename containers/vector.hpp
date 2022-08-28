@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/28 11:42:45 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/08/28 11:52:17 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -293,6 +293,10 @@ class vector {
                 std::fill_n(first_, n, val);
             }
             last_ = first_ + n;
+        }
+        allocator_type get_allocator() const
+        {
+            return alloc_;
         }
 
     private:
