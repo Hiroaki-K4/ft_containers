@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/28 20:54:10 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/08/28 21:12:20 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,8 +179,9 @@ namespace ft
             }
             iterator insert(iterator position, const value_type &val)
             {
+                size_type range = position - begin();
                 insert(position, 1, val);
-                return position;
+                return begin() + range;
             }
             void insert(iterator position, size_type n, const value_type &val)
             {
