@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 21:12:49 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/27 23:56:49 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/08/28 11:39:04 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,6 +220,24 @@ int main(void)
         std::cout << "rend_test contains:";
         for (ft::vector<int>::iterator it = rend_test.begin(); it != rend_test.end(); ++it)
             std::cout << ' ' << *it;
+        std::cout << std::endl;
+    }
+
+    {
+        std::cout << std::endl;
+        std::cout << "pop_back test" << std::endl;
+        ft::vector<int> pop_test;
+        int sum(0);
+        pop_test.push_back(100);
+        pop_test.push_back(200);
+        pop_test.push_back(300);
+        while (!pop_test.empty())
+        {
+            sum += pop_test.back();
+            pop_test.pop_back();
+        }
+        std::cout << "The elements of pop_test add up to " << sum << std::endl;
+        std::cout << "Size: " << pop_test.size() << std::endl;
         std::cout << std::endl;
     }
 
