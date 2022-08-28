@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 21:12:49 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/28 15:56:31 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/08/28 16:59:19 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -276,6 +276,24 @@ int main(void)
         std::cout << "bar contains:";
         for (unsigned i = 0; i < bar.size(); i++)
             std::cout << ' ' << bar[i];
+        std::cout << std::endl;
+    }
+
+    {
+        std::cout << std::endl;
+        std::cout << "non-member swap test" << std::endl;
+        ft::vector<int> foo(3, 100);
+        ft::vector<int> bar(5, 200);
+
+        swap(foo, bar);
+        std::cout << "foo contains:";
+        for (ft::vector<int>::iterator it = foo.begin(); it!=foo.end(); ++it)
+            std::cout << ' ' << *it;
+        std::cout << std::endl;
+
+        std::cout << "bar contains:";
+        for (ft::vector<int>::iterator it = bar.begin(); it!=bar.end(); ++it)
+            std::cout << ' ' << *it;
         std::cout << std::endl;
     }
 
