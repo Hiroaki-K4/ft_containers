@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/28 21:12:20 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/08/29 09:32:42 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 namespace ft
 {
-    template <class T, class Allocator = std::allocator<T>>
+    template <class T, class Allocator = std::allocator<T> >
     class vector {
         public:
             typedef T value_type;
