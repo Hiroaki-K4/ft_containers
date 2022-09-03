@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/29 09:32:42 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/09/03 21:00:06 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <iterator>
 #include <deque>
 #include <type_traits>
+#include "type_traits.hpp"
 
 namespace ft
 {
@@ -52,7 +53,7 @@ namespace ft
                 }
             }
             template <class InputIterator>
-            vector(InputIterator first, typename std::enable_if<!std::is_integral<InputIterator>::value, InputIterator>::type last, const allocator_type &alloc = allocator_type()) : alloc_(alloc)
+            vector(InputIterator first, typename std::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type last, const allocator_type &alloc = allocator_type()) : alloc_(alloc)
             {
                 allocate(std::distance(first, last));
                 std::uninitialized_copy(first, last, first_);
@@ -74,7 +75,7 @@ namespace ft
             }
 
             template <class InputIterator>
-            void assign(InputIterator first, typename std::enable_if<!std::is_integral<InputIterator>::value, InputIterator>::type last)
+            void assign(InputIterator first, typename std::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type last)
             {
                 size_type dist = std::distance(first, last);
                 if (dist > capacity())
@@ -217,7 +218,7 @@ namespace ft
                 }
             }
             template <class InputIterator>
-            void insert(iterator position, InputIterator first, typename std::enable_if<!std::is_integral<InputIterator>::value, InputIterator>::type last)
+            void insert(iterator position, InputIterator first, typename std::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type last)
             {
                 size_type insert_size = std::distance(first, last);
                 size_type range = position - begin();

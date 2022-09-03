@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 22:38:09 by hkubo             #+#    #+#             */
-/*   Updated: 2022/09/03 17:57:30 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/09/03 20:58:33 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,7 @@ void test_is_integral()
     std::cout << "char: " << ft::is_integral<char>::value << std::endl;
     std::cout << "int: " << ft::is_integral<int>::value << std::endl;
     std::cout << "float: " << ft::is_integral<float>::value << std::endl;
+    if (std::is_integral<int>())
+        std::cout << "int is an integral type" << std::endl;
+    std::cout << std::endl;
 }

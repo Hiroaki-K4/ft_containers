@@ -6,14 +6,12 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 09:32:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/09/03 17:57:17 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/09/03 20:58:56 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPE_TRAITS_HPP
 # define TYPE_TRAITS_HPP
-
-#include <iostream>
 
 namespace ft
 {
