@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 09:32:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/09/03 20:58:56 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/09/03 21:51:58 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,16 @@
 
 namespace ft
 {
+    template<bool Cond, class T = void>
+    struct enable_if {};
+
+    template<class T>
+    struct enable_if<true, T>
+    {
+        typedef T type;
+    };
+
+
     template <class T, T v>
     struct integral_constant {
         enum { value = v };
