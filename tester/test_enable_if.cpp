@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 22:34:50 by hkubo             #+#    #+#             */
-/*   Updated: 2022/09/03 21:56:59 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/09/03 22:12:26 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ typename ft::enable_if<ft::is_integral<T>::value, bool>::type is_odd(T i)
     return bool(i % 2);
 }
 
-template <class T, class = typename ft::enable_if<ft::is_integral<T>::value>::type> bool is_even (T i)
+template <class T>
+typename ft::enable_if<ft::is_integral<T>::value, bool>::type is_even(T i)
 {
     return !bool(i % 2);
 }

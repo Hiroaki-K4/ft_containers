@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/09/03 21:58:44 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/09/03 22:10:51 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include <memory>
 #include <iterator>
 #include <deque>
-#include <type_traits>
 #include "type_traits.hpp"
 
 namespace ft

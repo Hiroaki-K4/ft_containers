@@ -8,8 +8,7 @@ HEADER := includes/vector.hpp includes/type_traits.hpp
 
 RM := rm -rf
 CC := c++
-# FLAGS := -Wall -Wextra -Werror -std=c++98
-FLAGS := -Wall -Wextra -Werror -std=c++11
+FLAGS := -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
 
