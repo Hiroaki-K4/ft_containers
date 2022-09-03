@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 22:37:20 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/28 22:39:58 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/09/03 16:38:53 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define TEST_IS_INTEGRAL_HPP
 
 #include <iostream>
+#include "type_traits.hpp"
 
 void test_is_integral();
 
