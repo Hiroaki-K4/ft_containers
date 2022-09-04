@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 21:12:49 by hkubo             #+#    #+#             */
-/*   Updated: 2022/09/04 12:05:58 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/09/04 16:49:43 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "test_enable_if.hpp"
 #include "test_is_integral.hpp"
 #include "test_iterator_traits.hpp"
+#include "test_reverse_iterator.hpp"
 
 int main(void)
 {
@@ -22,7 +23,7 @@ int main(void)
     std::cout << "TEST map" << std::endl;
     std::cout << "TEST stack" << std::endl;
     test_iterator_traits();
-    std::cout << "TEST reverse_iterator" << std::endl;
+    test_reverse_iterator();
     test_enable_if();
     test_is_integral();
     std::cout << "TEST equal and/or lexicographical_compare" << std::endl;
