@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 22:30:35 by hkubo             #+#    #+#             */
-/*   Updated: 2022/08/28 22:33:15 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/09/04 15:12:57 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void test_vector()
         std::cout << std::endl;
 
         int myints[] = {16,2,77,29};
-        ft::vector<int> fifth (myints, myints + sizeof(myints) / sizeof(int));
+        ft::vector<int> fifth(myints, myints + sizeof(myints) / sizeof(int));
         std::cout << "The contents of fifth are:";
         for (ft::vector<int>::iterator it = fifth.begin(); it != fifth.end(); ++it)
             std::cout << ' ' << *it;
