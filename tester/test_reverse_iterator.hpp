@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:47:41 by hkubo             #+#    #+#             */
-/*   Updated: 2022/09/04 17:47:41 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/09/04 22:20:52 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define TEST_REVERSE_ITERATOR_HPP
 
 #include <iostream>
+#include <map>
 #include <vector>
 #include "stl_iterator.hpp"
 
