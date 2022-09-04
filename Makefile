@@ -1,7 +1,11 @@
 NAME := grade
 
 TEST_DIR := ./tester/
-SRC := tester/main.cpp tester/test_vector.cpp tester/test_enable_if.cpp tester/test_is_integral.cpp
+SRC := tester/main.cpp \
+	   tester/test_vector.cpp \
+	   tester/test_enable_if.cpp \
+	   tester/test_is_integral.cpp \
+	   tester/test_iterator_traits.cpp
 OBJ := $(SRC:.cpp=.o)
 INCLUDE := -I./includes
 HEADER := includes/vector.hpp includes/type_traits.hpp
