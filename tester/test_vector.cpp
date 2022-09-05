@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 22:30:35 by hkubo             #+#    #+#             */
-/*   Updated: 2022/09/04 15:12:57 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/09/05 08:58:03 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void test_vector()
     std::cout << "~~~ TEST vector ~~~" << std::endl;
 
     {
-        std::cout << "constructor test" << std::endl;
+        std::cout << "[constructor test]" << std::endl;
         ft::vector<int> first;
         for (size_t i = 0; i < first.size(); i++)
             std::cout << first[i] << " ";
@@ -48,7 +48,7 @@ void test_vector()
 
     {
         std::cout << std::endl;
-        std::cout << "assign test" << std::endl;
+        std::cout << "[assign test]" << std::endl;
         ft::vector<int> assign1;
         ft::vector<int> assign2;
         ft::vector<int> assign3;
@@ -69,7 +69,7 @@ void test_vector()
 
     {
         std::cout << std::endl;
-        std::cout << "at test" << std::endl;
+        std::cout << "[at test]" << std::endl;
         ft::vector<int> at_test(10);
         for (unsigned i = 0; i < at_test.size(); i++)
             at_test.at(i)=i;
@@ -88,7 +88,7 @@ void test_vector()
 
     {
         std::cout << std::endl;
-        std::cout << "back test" << std::endl;
+        std::cout << "[back test]" << std::endl;
         ft::vector<int> back_test;
         back_test.push_back(10);
         while (back_test.back() != 0)
@@ -103,7 +103,7 @@ void test_vector()
 
     {
         std::cout << std::endl;
-        std::cout << "begin test" << std::endl;
+        std::cout << "[begin test]" << std::endl;
         ft::vector<int> begin_test;
         for (int i = 1; i <= 5; i++)
             begin_test.push_back(i);
@@ -127,7 +127,7 @@ void test_vector()
 
     {
         std::cout << std::endl;
-        std::cout << "clear test" << std::endl;
+        std::cout << "[clear test]" << std::endl;
         ft::vector<int> clear_test;
         clear_test.push_back(100);
         clear_test.push_back(200);
@@ -150,7 +150,7 @@ void test_vector()
 
     {
         std::cout << std::endl;
-        std::cout << "empty test" << std::endl;
+        std::cout << "[empty test]" << std::endl;
         ft::vector<int> empty_test;
         int sum (0);
         for (int i = 1; i <= 10; i++) empty_test.push_back(i);
@@ -164,19 +164,19 @@ void test_vector()
 
     {
         std::cout << std::endl;
-        std::cout << "empty test" << std::endl;
-        ft::vector<int> empty_test;
+        std::cout << "[end test]" << std::endl;
+        ft::vector<int> end_test;
         for (int i = 1; i <= 5; i++)
-            empty_test.push_back(i);
+            end_test.push_back(i);
         std::cout << "empty_test contains:";
-        for (ft::vector<int>::iterator it = empty_test.begin(); it != empty_test.end(); ++it)
+        for (ft::vector<int>::iterator it = end_test.begin(); it != end_test.end(); ++it)
             std::cout << ' ' << *it;
         std::cout << std::endl;
     }
 
     {
         std::cout << std::endl;
-        std::cout << "erase test" << std::endl;
+        std::cout << "[erase test]" << std::endl;
         ft::vector<int> erase_test;
         for (int i = 1; i <= 10; i++)
             erase_test.push_back(i);
@@ -189,7 +189,7 @@ void test_vector()
 
     {
         std::cout << std::endl;
-        std::cout << "front test" << std::endl;
+        std::cout << "[front test]" << std::endl;
         ft::vector<int> front_test;
         front_test.push_back(78);
         front_test.push_back(16);
@@ -198,7 +198,7 @@ void test_vector()
     }
 
     {
-        std::cout << "get_allocator test" << std::endl;
+        std::cout << "[get_allocator test]" << std::endl;
         ft::vector<int> get_alloc_test;
         int *p;
         unsigned int i;
@@ -219,7 +219,7 @@ void test_vector()
 
     {
         std::cout << std::endl;
-        std::cout << "insert test" << std::endl;
+        std::cout << "[insert test]" << std::endl;
         ft::vector<int> vec_test(3,100);
         ft::vector<int>::iterator it;
 
@@ -240,7 +240,7 @@ void test_vector()
 
     {
         std::cout << std::endl;
-        std::cout << "operator[] test" << std::endl;
+        std::cout << "[operator[] test]" << std::endl;
         ft::vector<int> op_test(10);
         ft::vector<int>::size_type sz = op_test.size();
         for (unsigned i = 0; i < sz; i++)
@@ -261,7 +261,7 @@ void test_vector()
 
     {
         std::cout << std::endl;
-        std::cout << "operator= test" << std::endl;
+        std::cout << "[operator= test]" << std::endl;
         ft::vector<int> foo(3, 0);
         ft::vector<int> bar(5, 0);
         bar = foo;
@@ -272,7 +272,7 @@ void test_vector()
 
     {
         std::cout << std::endl;
-        std::cout << "pop_back test" << std::endl;
+        std::cout << "[pop_back test]" << std::endl;
         ft::vector<int> pop_test;
         int sum(0);
         pop_test.push_back(100);
@@ -290,7 +290,7 @@ void test_vector()
 
     {
         std::cout << std::endl;
-        std::cout << "push_back test" << std::endl;
+        std::cout << "[push_back test]" << std::endl;
         ft::vector<int> push_test;
         int myint;
         std::cout << "Please enter some integers (enter 0 to end):" << std::endl;
@@ -305,7 +305,7 @@ void test_vector()
 
     {
         std::cout << std::endl;
-        std::cout << "rbegin test" << std::endl;
+        std::cout << "[rbegin test]" << std::endl;
         ft::vector<int> rbegin_test(5);
         int i = 0;
         ft::vector<int>::reverse_iterator rit = rbegin_test.rbegin();
@@ -319,7 +319,7 @@ void test_vector()
 
     {
         std::cout << std::endl;
-        std::cout << "rend test" << std::endl;
+        std::cout << "[rend test]" << std::endl;
         ft::vector<int> rend_test(5);
         ft::vector<int>::reverse_iterator rit = rend_test.rbegin();
         int i = 0;
@@ -333,7 +333,7 @@ void test_vector()
 
     {
         std::cout << std::endl;
-        std::cout << "reserve test" << std::endl;
+        std::cout << "[reserve test]" << std::endl;
         ft::vector<int>::size_type sz;
         ft::vector<int> foo;
         sz = foo.capacity();
@@ -365,7 +365,7 @@ void test_vector()
 
     {
         std::cout << std::endl;
-        std::cout << "resize test" << std::endl;
+        std::cout << "[resize test]" << std::endl;
         ft::vector<int> resize_test;
         for (int i=1;i<10;i++)
             resize_test.push_back(i);
@@ -379,7 +379,7 @@ void test_vector()
 
     {
         std::cout << std::endl;
-        std::cout << "size test" << std::endl;
+        std::cout << "[size test]" << std::endl;
         ft::vector<int> size_test;
         std::cout << "0. size: " << size_test.size() << std::endl;
 
@@ -395,7 +395,7 @@ void test_vector()
 
     {
         std::cout << std::endl;
-        std::cout << "swap test" << std::endl;
+        std::cout << "[swap test]" << std::endl;
         ft::vector<int> foo (3,100);
         ft::vector<int> bar (5,200);
 
@@ -413,7 +413,7 @@ void test_vector()
 
     {
         std::cout << std::endl;
-        std::cout << "relational operators test" << std::endl;
+        std::cout << "[relational operators test]" << std::endl;
         ft::vector<int> foo(3, 100);
         ft::vector<int> bar(2, 200);
 
@@ -433,7 +433,7 @@ void test_vector()
 
     {
         std::cout << std::endl;
-        std::cout << "non-member swap test" << std::endl;
+        std::cout << "[non-member swap test]" << std::endl;
         ft::vector<int> foo(3, 100);
         ft::vector<int> bar(5, 200);
 
