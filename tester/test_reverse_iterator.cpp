@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:47:44 by hkubo             #+#    #+#             */
-/*   Updated: 2022/09/04 23:15:19 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/09/05 08:53:50 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void test_reverse_iterator()
     std::cout << "~~~ TEST reverse_iterator ~~~" << std::endl;
 
     {
-        std::cout << "constructor test" << std::endl;
+        std::cout << "[constructor test]" << std::endl;
         std::vector<int> myvector;
         for (int i = 0; i < 10; i++)
             myvector.push_back(i);
@@ -35,7 +35,7 @@ void test_reverse_iterator()
     }
 
     {
-        std::cout << "base test" << std::endl;
+        std::cout << "[base test]" << std::endl;
         std::vector<int> myvector;
         for (int i = 0; i < 10; i++)
             myvector.push_back(i);
@@ -50,7 +50,7 @@ void test_reverse_iterator()
     }
 
     {
-        std::cout << "operator- test" << std::endl;
+        std::cout << "[operator- test]" << std::endl;
         std::vector<int> myvector;
         for (int i = 0; i < 10; i++)
             myvector.push_back(i);
@@ -61,7 +61,7 @@ void test_reverse_iterator()
     }
 
     {
-        std::cout << "operator-- test" << std::endl;
+        std::cout << "[operator-- test]" << std::endl;
         std::vector<int> myvector;
         for (int i = 0; i < 10; i++)
             myvector.push_back(i);
@@ -79,7 +79,7 @@ void test_reverse_iterator()
     }
 
     {
-        std::cout << "operator-= test" << std::endl;
+        std::cout << "[operator-= test]" << std::endl;
         std::vector<int> myvector;
         for (int i = 0; i < 10; i++)
             myvector.push_back(i);
@@ -91,7 +91,7 @@ void test_reverse_iterator()
     }
 
     {
-        std::cout << "operator-> test" << std::endl;
+        std::cout << "[operator-> test]" << std::endl;
         std::map<int,std::string> numbers;
         numbers.insert(std::make_pair(1, "one"));
         numbers.insert(std::make_pair(2, "two"));
@@ -105,7 +105,7 @@ void test_reverse_iterator()
     }
 
     {
-        std::cout << "operator[] test" << std::endl;
+        std::cout << "[operator[] test]" << std::endl;
         std::vector<int> myvector;
         for (int i = 0; i < 10; i++)
             myvector.push_back(i);
@@ -116,7 +116,7 @@ void test_reverse_iterator()
     }
 
     {
-        std::cout << "operator* test" << std::endl;
+        std::cout << "[operator* test]" << std::endl;
         std::vector<int> myvector;
         for (int i = 0; i < 10; i++)
             myvector.push_back(i);
@@ -133,7 +133,7 @@ void test_reverse_iterator()
     }
 
     {
-        std::cout << "operator+ test" << std::endl;
+        std::cout << "[operator+ test]" << std::endl;
         std::vector<int> myvector;
         for (int i = 0; i < 10; i++)
             myvector.push_back(i);
@@ -145,7 +145,7 @@ void test_reverse_iterator()
     }
 
     {
-        std::cout << "operator++ test" << std::endl;
+        std::cout << "[operator++ test]" << std::endl;
         std::vector<int> myvector;
         for (int i = 0; i < 10; i++)
             myvector.push_back(i);
@@ -164,7 +164,7 @@ void test_reverse_iterator()
     }
 
     {
-        std::cout << "operator+= test" << std::endl;
+        std::cout << "[operator+= test]" << std::endl;
         std::vector<int> myvector;
         for (int i = 0; i < 10; i++)
             myvector.push_back(i);
@@ -177,7 +177,7 @@ void test_reverse_iterator()
     }
 
     {
-        std::cout << "operator-(non-member) test" << std::endl;
+        std::cout << "[operator-(non-member) test]" << std::endl;
         std::vector<int> myvector;
         for (int i = 0; i < 10; i++)
             myvector.push_back(i);
@@ -188,7 +188,7 @@ void test_reverse_iterator()
     }
 
     {
-        std::cout << "operator+(non-member) test" << std::endl;
+        std::cout << "[operator+(non-member) test]" << std::endl;
         std::vector<int> myvector;
         for (int i = 0; i < 10; i++)
             myvector.push_back(i);
@@ -199,7 +199,7 @@ void test_reverse_iterator()
     }
 
     {
-        std::cout << "operator== and operator!=(non-member) test" << std::endl;
+        std::cout << "[operator== and operator!=(non-member) test]" << std::endl;
         std::vector<int> myvector;
         for (int i = 0; i < 10; i++) myvector.push_back(i);
         typedef std::vector<int>::iterator iter_type;
@@ -217,7 +217,7 @@ void test_reverse_iterator()
     }
 
     {
-        std::cout << "operator<, operator<=, operator> and operator>=(non-member) test" << std::endl;
+        std::cout << "[operator<, operator<=, operator> and operator>=(non-member) test]" << std::endl;
         std::vector<int> myvector;
         for (int i = 0; i < 10; i++) myvector.push_back(i);
         typedef std::vector<int>::iterator iter_type;
