@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 21:12:49 by hkubo             #+#    #+#             */
-/*   Updated: 2022/09/05 08:49:17 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/09/07 08:59:56 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "test_iterator_traits.hpp"
 #include "test_reverse_iterator.hpp"
 #include "test_compare.hpp"
+#include "test_pair.hpp"
 
 int main(void)
 {
@@ -28,7 +29,7 @@ int main(void)
     test_enable_if();
     test_is_integral();
     test_compare();
-    std::cout << "TEST std::pair" << std::endl;
+    test_pair();
     std::cout << "TEST std::make_pair" << std::endl;
 
     return (0);

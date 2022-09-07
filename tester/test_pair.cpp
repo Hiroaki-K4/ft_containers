@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_reverse_iterator.hpp                          :+:      :+:    :+:   */
+/*   test_pair.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/04 16:47:41 by hkubo             #+#    #+#             */
-/*   Updated: 2022/09/07 08:56:35 by hkubo            ###   ########.fr       */
+/*   Created: 2022/09/07 08:58:26 by hkubo             #+#    #+#             */
+/*   Updated: 2022/09/07 09:01:01 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEST_REVERSE_ITERATOR_HPP
-# define TEST_REVERSE_ITERATOR_HPP
+#include "test_pair.hpp"
 
-#include <iostream>
-#include <map>
-#include <vector>
-#include "reverse_iterator.hpp"
-
-void test_reverse_iterator();
-
-#endif
+void test_pair()
+{
+    std::cout << "~~~ TEST std::pair ~~~" << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+}
