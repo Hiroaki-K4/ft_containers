@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 21:12:49 by hkubo             #+#    #+#             */
-/*   Updated: 2022/09/07 08:59:56 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/09/11 17:58:01 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int main(void)
     test_is_integral();
     test_compare();
     test_pair();
-    std::cout << "TEST std::make_pair" << std::endl;
+    test_make_pair();
 
     return (0);
 }
