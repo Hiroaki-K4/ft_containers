@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:02 by hkubo             #+#    #+#             */
-/*   Updated: 2022/09/03 22:10:51 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/09/11 19:40:23 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,27 @@
 
 #include <limits>
 #include <memory>
-#include <iterator>
-#include <deque>
 #include "type_traits.hpp"
+#include "reverse_iterator.hpp"
 
 namespace ft
 {
     template <class T, class Allocator = std::allocator<T> >
-    class vector {
+    class vector
+    {
         public:
             typedef T value_type;
-            typedef T* pointer;
-            typedef const pointer const_pointer;
+            typedef Allocator allocator_type;
             typedef value_type& reference;
             typedef const value_type& const_reference;
-            typedef Allocator allocator_type;
-            typedef std::size_t size_type;
-            typedef std::ptrdiff_t difference_type;
-
+            typedef T* pointer;
+            typedef const pointer const_pointer;
             typedef pointer iterator;
             typedef const_pointer const_iterator;
-            typedef std::reverse_iterator<iterator> reverse_iterator;
-            typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
+            typedef ft::reverse_iterator<iterator> reverse_iterator;
+            typedef ft::reverse_iterator<const_iterator> const_reverse_iterator;
+            typedef std::ptrdiff_t difference_type;
+            typedef std::size_t size_type;
 
             explicit vector(const allocator_type &alloc = allocator_type())
                 : alloc_(alloc), first_(NULL), last_(NULL), reserved_last_(NULL)
