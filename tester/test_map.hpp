@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 18:36:40 by hkubo             #+#    #+#             */
-/*   Updated: 2022/09/11 18:38:34 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/09/11 20:06:25 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define TEST_MAP_HPP
 
 #include <iostream>
+#include <map>
 
 void test_map();
 

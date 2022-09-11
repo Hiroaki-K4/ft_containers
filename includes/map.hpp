@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 18:35:51 by hkubo             #+#    #+#             */
-/*   Updated: 2022/09/11 19:53:09 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/09/11 20:10:40 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,24 @@ namespace ft
             typedef ft::reverse_iterator<const_iterator> const_reverse_iterator;
             typedef std::ptrdiff_t difference_type;
             typedef std::size_t size_type;
+
+            explicit map(const key_compare& comp = key_compare(),
+                         const allocator_type& alloc = allocator_type())
+            {
+
+            }
+            template <class InputIterator>
+            map(InputIterator first,
+                InputIterator last,
+                const key_compare& comp = key_compare(),
+                const allocator_type& alloc = allocator_type())
+            {
+
+            }
+            map(const map& x)
+            {
+
+            }
 
         private:
         
