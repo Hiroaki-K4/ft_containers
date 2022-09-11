@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 08:58:26 by hkubo             #+#    #+#             */
-/*   Updated: 2022/09/11 18:00:58 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/09/11 18:40:48 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ void test_make_pair()
     std::cout << "~~~ TEST std::make_pair ~~~" << std::endl;
     ft::pair<int, int> foo;
     ft::pair<int, int> bar;
-
     foo = ft::make_pair(10, 20);
     bar = ft::make_pair(10.5, 'A');
-
-    std::cout << "foo: " << foo.first << ", " << foo.second << '\n';
-    std::cout << "bar: " << bar.first << ", " << bar.second << '\n';
+    std::cout << "foo: " << foo.first << ", " << foo.second << std::endl;
+    std::cout << "bar: " << bar.first << ", " << bar.second << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
 }
