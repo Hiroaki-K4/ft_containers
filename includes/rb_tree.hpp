@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_map.hpp                                       :+:      :+:    :+:   */
+/*   rb_tree.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/11 18:36:40 by hkubo             #+#    #+#             */
-/*   Updated: 2022/09/11 20:06:25 by hkubo            ###   ########.fr       */
+/*   Created: 2022/09/17 17:46:47 by hkubo             #+#    #+#             */
+/*   Updated: 2022/09/17 17:50:51 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEST_MAP_HPP
-# define TEST_MAP_HPP
+#ifndef RB_TREE_HPP
+# define RB_TREE_HPP
 
-#include <iostream>
-#include <map>
 
-void test_map();
 
 #endif
