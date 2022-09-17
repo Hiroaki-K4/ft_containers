@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 18:36:34 by hkubo             #+#    #+#             */
-/*   Updated: 2022/09/11 20:09:58 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/09/17 17:55:31 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,7 @@ void test_map()
         bool(*fn_pt)(char, char) = fncomp;
         std::map<char, int, bool(*)(char, char)> fifth(fn_pt);
     }
+
+    std::cout << std::endl;
+    std::cout << std::endl;
 }

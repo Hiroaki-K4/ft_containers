@@ -9,7 +9,8 @@ SRC := tester/main.cpp \
 	   tester/test_iterator_traits.cpp \
 	   tester/test_reverse_iterator.cpp \
 	   tester/test_compare.cpp \
-	   tester/test_pair.cpp
+	   tester/test_pair.cpp \
+	   tester/test_rb_tree.cpp
 OBJ := $(SRC:.cpp=.o)
 INCLUDE := -I./includes
 HEADER := includes/vector.hpp includes/type_traits.hpp

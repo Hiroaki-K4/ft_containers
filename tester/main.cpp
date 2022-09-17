@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 21:12:49 by hkubo             #+#    #+#             */
-/*   Updated: 2022/09/11 18:39:12 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/09/17 17:54:23 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "test_compare.hpp"
 #include "test_pair.hpp"
 #include "test_map.hpp"
+#include "test_rb_tree.hpp"
 
 int main(void)
 {
@@ -32,6 +33,7 @@ int main(void)
     test_pair();
     test_make_pair();
     test_map();
+    test_rb_tree();
 
     return (0);
 }
