@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 21:12:49 by hkubo             #+#    #+#             */
-/*   Updated: 2022/09/17 17:54:23 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/09/17 22:38:41 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,13 @@
 #include "test_map.hpp"
 #include "test_rb_tree.hpp"
 
-int main(void)
+int main(int ac, char *argv[])
 {
-    test_vector();
+    (void) argv;
+    int flag = 0;
+    if (ac == 2)
+        flag = 1;
+    test_vector(flag);
     std::cout << "TEST stack" << std::endl;
     test_iterator_traits();
     test_reverse_iterator();
