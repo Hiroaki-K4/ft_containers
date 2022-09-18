@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 22:30:35 by hkubo             #+#    #+#             */
-/*   Updated: 2022/09/18 18:24:56 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/09/18 21:17:31 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -540,13 +540,24 @@ void test_push_back(int manual_flag)
 void test_rbegin()
 {
     std::cout << "[rbegin test]" << std::endl;
-    ft::vector<int> rbegin_test(5);
+    std::vector<int> rbegin_test(5);
+    ft::vector<int> ft_rbegin_test(5);
+
     int i = 0;
-    ft::vector<int>::reverse_iterator rit = rbegin_test.rbegin();
+    std::vector<int>::reverse_iterator rit = rbegin_test.rbegin();
     for (; rit!= rbegin_test.rend(); ++rit)
         *rit = ++i;
+
+    i = 0;
+    ft::vector<int>::reverse_iterator ft_rit = ft_rbegin_test.rbegin();
+    for (; ft_rit!= ft_rbegin_test.rend(); ++ft_rit)
+        *ft_rit = ++i;
+
+    if (!std::equal(rbegin_test.begin(), rbegin_test.end(), ft_rbegin_test.begin()))
+        error_process("rbegin test failed!!");
+
     std::cout << "rbegin_test contains:";
-    for (ft::vector<int>::iterator it = rbegin_test.begin(); it != rbegin_test.end(); ++it)
+    for (ft::vector<int>::iterator it = ft_rbegin_test.begin(); it != ft_rbegin_test.end(); ++it)
         std::cout << ' ' << *it;
     std::cout << std::endl;
     std::cout << std::endl;
@@ -555,13 +566,24 @@ void test_rbegin()
 void test_rend()
 {
     std::cout << "[rend test]" << std::endl;
-    ft::vector<int> rend_test(5);
-    ft::vector<int>::reverse_iterator rit = rend_test.rbegin();
+    std::vector<int> rend_test(5);
+    ft::vector<int> ft_rend_test(5);
+
+    std::vector<int>::reverse_iterator rit = rend_test.rbegin();
     int i = 0;
     for (rit = rend_test.rbegin(); rit!= rend_test.rend(); ++rit)
         *rit = ++i;
+
+    ft::vector<int>::reverse_iterator ft_rit = ft_rend_test.rbegin();
+    i = 0;
+    for (ft_rit = ft_rend_test.rbegin(); ft_rit != ft_rend_test.rend(); ++ft_rit)
+        *ft_rit = ++i;
+
+    if (!std::equal(rend_test.begin(), rend_test.end(), ft_rend_test.begin()))
+        error_process("rend test failed!!");
+
     std::cout << "rend_test contains:";
-    for (ft::vector<int>::iterator it = rend_test.begin(); it != rend_test.end(); ++it)
+    for (ft::vector<int>::iterator it = ft_rend_test.begin(); it != ft_rend_test.end(); ++it)
         std::cout << ' ' << *it;
     std::cout << std::endl;
     std::cout << std::endl;
@@ -570,47 +592,77 @@ void test_rend()
 void test_reverse()
 {
     std::cout << "[reserve test]" << std::endl;
-    ft::vector<int>::size_type sz;
-    ft::vector<int> foo;
+    std::vector<int>::size_type sz;
+    ft::vector<int>::size_type ft_sz;
+    std::vector<int> foo;
+    ft::vector<int> ft_foo;
+
     sz = foo.capacity();
+    ft_sz = ft_foo.capacity();
     std::cout << "making foo grow:" << std::endl;
     for (int i = 0; i < 100; ++i)
     {
         foo.push_back(i);
-        if (sz != foo.capacity())
+        ft_foo.push_back(i);
+        if (ft_sz != ft_foo.capacity())
         {
             sz = foo.capacity();
-            std::cout << "capacity changed: " << sz << std::endl;
+            ft_sz = ft_foo.capacity();
+            if (sz != ft_sz)
+                error_process("reserve test failed!!");
+            std::cout << "capacity changed: " << ft_sz << std::endl;
         }
     }
 
-    ft::vector<int> bar;
+    std::vector<int> bar;
+    ft::vector<int> ft_bar;
+
     sz = bar.capacity();
+    ft_sz = ft_bar.capacity();
     bar.reserve(100);
+    ft_bar.reserve(100);
     std::cout << "making bar grow:" << std::endl;
     for (int i = 0; i < 100; ++i)
     {
         bar.push_back(i);
-        if (sz != bar.capacity())
+        ft_bar.push_back(i);
+        if (ft_sz != ft_bar.capacity())
         {
             sz = bar.capacity();
+            ft_sz = ft_bar.capacity();
+            if (sz != ft_sz)
+                error_process("reserve test failed!!");
             std::cout << "capacity changed: " << sz << std::endl;
         }
     }
+
     std::cout << std::endl;
 }
 
 void test_resize()
 {
     std::cout << "[resize test]" << std::endl;
-    ft::vector<int> resize_test;
-    for (int i=1;i<10;i++)
+    std::vector<int> resize_test;
+    ft::vector<int> ft_resize_test;
+
+    for (int i = 1; i < 10; i++)
+    {
         resize_test.push_back(i);
+        ft_resize_test.push_back(i);
+    }
+
     resize_test.resize(5);
     resize_test.resize(8,100);
     resize_test.resize(12);
-    for (size_t i = 0; i < resize_test.size(); i++)
-        std::cout << resize_test[i] << " ";
+    ft_resize_test.resize(5);
+    ft_resize_test.resize(8,100);
+    ft_resize_test.resize(12);
+
+    if (!std::equal(resize_test.begin(), resize_test.end(), ft_resize_test.begin()))
+        error_process("resize test failed!!");
+
+    for (size_t i = 0; i < ft_resize_test.size(); i++)
+        std::cout << ft_resize_test[i] << " ";
     std::cout << std::endl;
     std::cout << std::endl;
 }
@@ -618,35 +670,59 @@ void test_resize()
 void test_size()
 {
     std::cout << "[size test]" << std::endl;
-    ft::vector<int> size_test;
-    std::cout << "0. size: " << size_test.size() << std::endl;
+    std::vector<int> size_test;
+    ft::vector<int> ft_size_test;
 
-    for (int i = 0; i < 10; i++) size_test.push_back(i);
-        std::cout << "1. size: " << size_test.size() << std::endl;
+    if (size_test.size() != ft_size_test.size())
+        error_process("size test failed!!");
+    std::cout << "0. size: " << ft_size_test.size() << std::endl;
+
+    for (int i = 0; i < 10; i++)
+    {
+        size_test.push_back(i);
+        ft_size_test.push_back(i);
+    }
+    if (size_test.size() != ft_size_test.size())
+        error_process("size test failed!!");
+    std::cout << "1. size: " << ft_size_test.size() << std::endl;
 
     size_test.insert(size_test.end(), 10, 100);
-    std::cout << "2. size: " << size_test.size() << std::endl;
+    ft_size_test.insert(ft_size_test.end(), 10, 100);
+    if (size_test.size() != ft_size_test.size())
+        error_process("size test failed!!");
+    std::cout << "2. size: " << ft_size_test.size() << std::endl;
 
     size_test.pop_back();
-    std::cout << "3. size: " << size_test.size() << std::endl;
+    ft_size_test.pop_back();
+    if (size_test.size() != ft_size_test.size())
+        error_process("size test failed!!");
+    std::cout << "3. size: " << ft_size_test.size() << std::endl;
     std::cout << std::endl;
 }
 
 void test_swap()
 {
     std::cout << "[swap test]" << std::endl;
-    ft::vector<int> foo (3,100);
-    ft::vector<int> bar (5,200);
+    std::vector<int> foo(3, 100);
+    std::vector<int> bar(5, 200);
+    ft::vector<int> ft_foo(3, 100);
+    ft::vector<int> ft_bar(5, 200);
 
     foo.swap(bar);
+    ft_foo.swap(ft_bar);
+
+    if (!std::equal(foo.begin(), foo.end(), ft_foo.begin()) ||
+        !std::equal(bar.begin(), bar.end(), ft_bar.begin()))
+        error_process("swap test failed!!");
+
     std::cout << "foo contains:";
-    for (unsigned i = 0; i < foo.size(); i++)
-        std::cout << ' ' << foo[i];
+    for (unsigned i = 0; i < ft_foo.size(); i++)
+        std::cout << ' ' << ft_foo[i];
     std::cout << std::endl;
 
     std::cout << "bar contains:";
-    for (unsigned i = 0; i < bar.size(); i++)
-        std::cout << ' ' << bar[i];
+    for (unsigned i = 0; i < ft_bar.size(); i++)
+        std::cout << ' ' << ft_bar[i];
     std::cout << std::endl;
     std::cout << std::endl;
 }
@@ -654,20 +730,22 @@ void test_swap()
 void test_relational_operators()
 {
     std::cout << "[relational operators test]" << std::endl;
-    ft::vector<int> foo(3, 100);
-    ft::vector<int> bar(2, 200);
+    std::vector<int> foo(3, 100);
+    std::vector<int> bar(2, 200);
+    ft::vector<int> ft_foo(3, 100);
+    ft::vector<int> ft_bar(2, 200);
 
-    if (foo == bar)
+    if (foo == bar && ft_foo == ft_bar)
         std::cout << "foo and bar are equal" << std::endl;
-    if (foo != bar)
+    if (foo != bar && ft_foo != ft_bar)
         std::cout << "foo and bar are not equal" << std::endl;
-    if (foo < bar)
+    if (foo < bar && ft_foo < ft_bar)
         std::cout << "foo is less than bar" << std::endl;
-    if (foo > bar)
+    if (foo > bar && ft_foo > ft_bar)
         std::cout << "foo is greater than bar" << std::endl;
-    if (foo <= bar)
+    if (foo <= bar && ft_foo <= ft_bar)
         std::cout << "foo is less than or equal to bar" << std::endl;
-    if (foo >= bar)
+    if (foo >= bar && ft_foo >= ft_bar)
         std::cout << "foo is greater than or equal to bar" << std::endl;
     std::cout << std::endl;
 }
@@ -675,17 +753,25 @@ void test_relational_operators()
 void test_non_member_swap()
 {
     std::cout << "[non-member swap test]" << std::endl;
-    ft::vector<int> foo(3, 100);
-    ft::vector<int> bar(5, 200);
+    std::vector<int> foo(3, 100);
+    std::vector<int> bar(5, 200);
+    ft::vector<int> ft_foo(3, 100);
+    ft::vector<int> ft_bar(5, 200);
 
-    swap(foo, bar);
+    std::swap(foo, bar);
+    swap(ft_foo, ft_bar);
+
+    if (!std::equal(foo.begin(), foo.end(), ft_foo.begin()) ||
+        !std::equal(bar.begin(), bar.end(), ft_bar.begin()))
+        error_process("non-member swap test failed!!");
+
     std::cout << "foo contains:";
-    for (ft::vector<int>::iterator it = foo.begin(); it!=foo.end(); ++it)
+    for (ft::vector<int>::iterator it = ft_foo.begin(); it != ft_foo.end(); ++it)
         std::cout << ' ' << *it;
     std::cout << std::endl;
 
     std::cout << "bar contains:";
-    for (ft::vector<int>::iterator it = bar.begin(); it!=bar.end(); ++it)
+    for (ft::vector<int>::iterator it = ft_bar.begin(); it != ft_bar.end(); ++it)
         std::cout << ' ' << *it;
     std::cout << std::endl;
 }
