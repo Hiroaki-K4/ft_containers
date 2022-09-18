@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_vector.hpp                                    :+:      :+:    :+:   */
+/*   utils.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/28 22:26:50 by hkubo             #+#    #+#             */
-/*   Updated: 2022/09/18 22:11:30 by hkubo            ###   ########.fr       */
+/*   Created: 2022/09/18 21:55:36 by hkubo             #+#    #+#             */
+/*   Updated: 2022/09/18 21:57:02 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEST_VECTOR_HPP
-# define TEST_VECTOR_HPP
+#ifndef UTILS_HPP
+# define UTILS_HPP
 
 #include <iostream>
-#include <vector>
 #include <cstdlib>
-#include "vector.hpp"
-#include "utils.hpp"
 
-void test_vector(int manual_flag);
+void error_process(std::string msg);
 
 #endif

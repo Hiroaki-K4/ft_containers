@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 22:34:50 by hkubo             #+#    #+#             */
-/*   Updated: 2022/09/04 15:59:43 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/09/18 22:37:14 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,13 @@ void my_reverse(BidirIt first, BidirIt last)
         *first++ = *--last;
         *last = tmp;
     }
-    if (typeid(typename ft::iterator_traits<BidirIt>::iterator_category)==typeid(std::random_access_iterator_tag))
+    if (typeid(typename ft::iterator_traits<BidirIt>::iterator_category) == typeid(std::random_access_iterator_tag))
         std::cout << "vector is a random-access iterator" << std::endl;
-    else if (typeid(typename ft::iterator_traits<BidirIt>::iterator_category)==typeid(std::bidirectional_iterator_tag))
+    else if (typeid(typename ft::iterator_traits<BidirIt>::iterator_category) == typeid(std::bidirectional_iterator_tag))
         std::cout << "list is a bidirectional iterator" << std::endl;
+    if (typeid(typename std::iterator_traits<BidirIt>::iterator_category) !=
+        typeid(typename ft::iterator_traits<BidirIt>::iterator_category))
+        error_process("iterator_traits test failed!!");
 }
 
 void test_iterator_traits()
@@ -32,9 +35,13 @@ void test_iterator_traits()
     std::cout << std::endl;
     std::cout << std::endl;
     std::cout << "~~~ TEST iterator_traits ~~~" << std::endl;
-    typedef ft::iterator_traits<int*> traits;
-    if (typeid(traits::iterator_category)==typeid(std::random_access_iterator_tag))
+    typedef std::iterator_traits<int*> traits;
+    typedef ft::iterator_traits<int*> ft_traits;
+    if (typeid(ft_traits::iterator_category) == typeid(std::random_access_iterator_tag))
         std::cout << "int* is a random-access iterator" << std::endl;
+
+    if (typeid(traits::iterator_category) != typeid(ft_traits::iterator_category))
+        error_process("iterator_traits test failed!!");
 
     {
         int ints[] = {1, 2, 3, 4, 5};

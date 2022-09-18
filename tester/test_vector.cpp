@@ -6,18 +6,11 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 22:30:35 by hkubo             #+#    #+#             */
-/*   Updated: 2022/09/18 21:17:31 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/09/18 22:35:50 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test_vector.hpp"
-
-void error_process(std::string msg)
-{
-    std::cout << msg << std::endl;
-    exit(1);
-}
-
 
 void test_constructor()
 {
