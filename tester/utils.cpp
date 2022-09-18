@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_compare.hpp                                   :+:      :+:    :+:   */
+/*   utils.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/05 08:46:09 by hkubo             #+#    #+#             */
-/*   Updated: 2022/09/18 22:03:45 by hkubo            ###   ########.fr       */
+/*   Created: 2022/09/18 21:56:32 by hkubo             #+#    #+#             */
+/*   Updated: 2022/09/18 21:58:56 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEST_COMPARE_HPP
-# define TEST_COMPARE_HPP
+#include "utils.hpp"
 
-#include <iostream>
-#include <vector>
-#include <cstdlib>
-#include "compare.hpp"
-#include "test_vector.hpp"
-
-void test_compare();
-
-#endif
+void error_process(std::string msg)
+{
+    std::cout << msg << std::endl;
+    exit(1);
+}

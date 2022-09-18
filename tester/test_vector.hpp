@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 22:26:50 by hkubo             #+#    #+#             */
-/*   Updated: 2022/09/17 22:38:47 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/09/18 22:02:44 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@
 #include "vector.hpp"
 
 void test_vector(int manual_flag);
+void error_process(std::string msg);
 
 #endif

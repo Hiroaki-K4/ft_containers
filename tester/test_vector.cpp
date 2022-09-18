@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 22:30:35 by hkubo             #+#    #+#             */
-/*   Updated: 2022/09/18 21:17:31 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/09/18 22:02:00 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void error_process(std::string msg)
     std::cout << msg << std::endl;
     exit(1);
 }
-
 
 void test_constructor()
 {
