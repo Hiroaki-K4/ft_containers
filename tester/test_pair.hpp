@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 08:57:36 by hkubo             #+#    #+#             */
-/*   Updated: 2022/09/11 17:58:41 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/09/18 22:43:11 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include "pair.hpp"
+#include "utils.hpp"
 
 void test_pair();
 void test_make_pair();
