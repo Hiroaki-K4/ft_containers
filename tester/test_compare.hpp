@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 08:46:09 by hkubo             #+#    #+#             */
-/*   Updated: 2022/09/18 22:03:45 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/09/18 22:11:18 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <vector>
 #include <cstdlib>
 #include "compare.hpp"
-#include "test_vector.hpp"
+#include "utils.hpp"
 
 void test_compare();
 
