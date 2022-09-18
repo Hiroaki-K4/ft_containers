@@ -42,7 +42,6 @@ lint:
 	cpplint --filter=-legal/copyright,-build/header_guard $(SRC) $(HEADER)
 
 test: debug
-# test: lint
-test: ./grade
+	  ./grade
 
 .PHONY: all clean fclean re test lint
