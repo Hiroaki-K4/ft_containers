@@ -6,7 +6,7 @@
 /*   By: hkubo <hkubo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 18:35:51 by hkubo             #+#    #+#             */
-/*   Updated: 2022/09/17 17:46:38 by hkubo            ###   ########.fr       */
+/*   Updated: 2022/09/19 21:38:22 by hkubo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ namespace ft
                         return comp(x.first, y.first);
                     }
             }
-            typedef Allocator allocator_type;
+            typedef Alloc allocator_type;
             typedef value_type& reference;
             typedef const value_type& const_reference;
             typedef value_type* pointer;
@@ -77,7 +77,9 @@ namespace ft
             }
 
         private:
-        
+            typedef rb_tree<key_type, value_type, _Select1st<value_type>,
+		                    key_compare, _Pair_alloc_type> _Rep_type;
+
     };
 }
 
