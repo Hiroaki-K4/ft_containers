@@ -11,6 +11,7 @@ SRC := tester/main.cpp \
 	   tester/test_compare.cpp \
 	   tester/test_pair.cpp \
 	   tester/test_rb_tree.cpp \
+	   tester/test_stack.cpp \
 	   tester/utils.cpp
 OBJ := $(SRC:.cpp=.o)
 INCLUDE := -I./includes
