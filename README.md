@@ -9,7 +9,7 @@ ones) is expected.
 
 <br></br>
 
-# Mandatory part
+# Items
 Implement the following containers and turn in the necessary <container>.hpp files:
 - vector
 You don’t have to do the vector<bool> specialization.
